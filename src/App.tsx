@@ -1,3 +1,4 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Text } from './components/Text'
 
 function App() {
