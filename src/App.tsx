@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@emotion/react'
+import { Global, ThemeProvider } from '@emotion/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Text } from './components/Text'
 import { Cart } from './pages/Cart'
@@ -6,6 +6,7 @@ import { Homepage } from './pages/Homepage'
 import { NotFound } from './pages/NotFound'
 import { ProductDetail } from './pages/ProductDetail'
 import { Products } from './pages/Products'
+import { globalStyle } from './style/global'
 import { theme } from './style/theme'
 
 const router = createBrowserRouter([
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <Global styles={globalStyle} />
       <RouterProvider router={router} />
     </ThemeProvider>
   )
