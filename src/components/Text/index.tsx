@@ -1,11 +1,12 @@
 import { ReactNode } from 'react'
+import { ThemeColor } from '../../style/theme'
 import { StyledText } from './styled'
 
 type Props = {
   children: ReactNode
-  fontColor?: string
+  color?: ThemeColor
 }
 
-export const Text = ({ children, fontColor = 'black' }: Props) => {
-  return <StyledText fontColor={fontColor}>{children}</StyledText>
+export const Text = ({ children, color = 'text' }: Props) => {
+  return <StyledText textColor={color}>{children}</StyledText>
 }
