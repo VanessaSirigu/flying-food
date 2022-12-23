@@ -1,8 +1,25 @@
 import styled from '@emotion/styled'
-import { ThemeColor } from '../../style/theme'
+import { FontSize, ThemeColor } from '../../style/theme'
 
-export const StyledText = styled.p<{ textColor: ThemeColor }>`
-  font-size: 20px;
-  font-weight: bold;
+export type TextVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'
+
+const sizesMap: Partial<Record<TextVariant, FontSize>> = {
+  h1: 'xl',
+  h2: 'lg'
+}
+
+export const StyledText = styled.p<{
+  textColor: ThemeColor
+  variant: TextVariant
+  textSize?: FontSize
+  bold?: boolean
+  uppercase?: boolean
+}>`
   color: ${({ theme, textColor }) => theme.colors[textColor]};
+  font-size: ${({ theme, textSize, variant }) => {
+    const size = textSize || sizesMap[variant] || 'md'
+    return theme.fontSizes[size]
+  }}rem;
+  font-weight: ${({ bold }) => bold && 'bold'};
+  text-transform: ${({ uppercase }) => uppercase && 'uppercase'};
 `

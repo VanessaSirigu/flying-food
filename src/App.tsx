@@ -1,6 +1,5 @@
 import { Global, ThemeProvider } from '@emotion/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Text } from './components/Text'
 import { Cart } from './pages/Cart'
 import { Homepage } from './pages/Homepage'
 import { NotFound } from './pages/NotFound'
