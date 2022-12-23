@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { theme, ThemeColor } from '../../style/theme'
+import { ThemeColor } from '../../style/theme'
 import { StyledPaper } from './styled'
 
 type Props = {

@@ -9,6 +9,6 @@ export const StyledPaper = styled.div<{
   shadow?: boolean
 }>`
   background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
-  border-radius: ${({ theme, rounded }) => rounded && theme.radii.at(1) + 'px'};
+  border-radius: ${({ theme, rounded }) => rounded && theme.radii.at(1) + 'em'};
   box-shadow: ${({ shadow }) => shadow && '0 8px 40px rgb(0, 0, 0, 0.1)'};
 `
