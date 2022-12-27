@@ -4,17 +4,35 @@ export const theme = {
     secondary: '#78A9FF',
     secondaryDark: '#285AB3',
     text: '#28282C',
-    textInverse: 'F0F0F0',
+    textInverse: '#F0F0F0',
     background: 'grey',
     backgroundDark: 'black'
   },
   // Units in REM
   fontSizes: {
-    xs: 0.6,
     sm: 0.8,
     md: 1,
     lg: 1.6,
     xl: 2.2
+  },
+  textVariants: {
+    h1: {
+      size: 'xl',
+      lineHeight: 1.4
+    },
+    h2: {
+      size: 'lg',
+      lineHeight: 1.2
+    },
+    p: {
+      size: 'md',
+      lineHeight: 1
+    },
+    h3: {},
+    h4: {},
+    h5: {},
+    h6: {},
+    span: {}
   },
   radii: [4, 8, 12]
 }
