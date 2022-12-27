@@ -5,8 +5,8 @@ export const theme = {
     secondaryDark: '#285AB3',
     text: '#28282C',
     textInverse: '#F0F0F0',
-    background: 'grey',
-    backgroundDark: 'black'
+    background: '#FCFCFC',
+    backgroundDark: '#36373B'
   },
   // Units in REM
   fontSizes: {
@@ -17,25 +17,40 @@ export const theme = {
   },
   textVariants: {
     h1: {
-      size: 'xl',
+      fontSize: 'xl',
       lineHeight: 1.4
     },
     h2: {
-      size: 'lg',
+      fontSize: 'lg',
+      lineHeight: 1.2
+    },
+    h3: {
+      fontSize: 'lg',
+      lineHeight: 1.2
+    },
+    h4: {
+      fontSize: 'lg',
+      lineHeight: 1.2
+    },
+    h5: {
+      fontSize: 'lg',
+      lineHeight: 1.2
+    },
+    h6: {
+      fontSize: 'lg',
       lineHeight: 1.2
     },
     p: {
-      size: 'md',
+      fontSize: 'md',
       lineHeight: 1
     },
-    h3: {},
-    h4: {},
-    h5: {},
-    h6: {},
-    span: {}
+    span: {
+      fontSize: 'inherit',
+      lineHeight: 'inherit'
+    }
   },
   radii: [4, 8, 12]
-}
+} as const
 
 export type AppTheme = typeof theme
 
