@@ -1,5 +1,4 @@
 import { Image } from '../Image'
-import { objFit } from '../Image/styled'
 import { Text } from '../Text'
 import { StyledAvatar } from './styled'
 
@@ -19,7 +18,8 @@ type Props = {
 
 export const Avatar = ({ imgSrc, username, size = 42 }: Props) => {
   const renderContent = () => {
-    if (imgSrc) return <Image src={imgSrc} alt="user" width="100%" height="100%" />
+    if (imgSrc)
+      return <Image src={imgSrc} alt="user" width="100%" height="100%" fit="cover" />
     if (username)
       return (
         <Text size="lg" uppercase>
