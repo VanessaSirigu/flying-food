@@ -17,7 +17,7 @@ export const Tag = ({
 }: Props) => {
   return (
     <StyledTag bgColor={bgColor} className={className}>
-      <Text color={textColor} uppercase>
+      <Text color={textColor} uppercase size="sm" bold>
         {title}
       </Text>
     </StyledTag>
