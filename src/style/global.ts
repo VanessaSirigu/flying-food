@@ -10,4 +10,8 @@ export const globalStyle = css`
   body {
     font-family: 'Futura PT', sans-serif;
   }
+
+  a {
+    text-decoration: none;
+  }
 `
