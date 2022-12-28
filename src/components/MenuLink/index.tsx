@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { ThemeColor } from '../../style/theme'
-import { Icon, IconName } from '../Icon'
+import { Icon } from '../Icon'
+import { IconName } from '../Icon/config'
 import { Text } from '../Text'
 import { StyledItem } from './styled'
 
@@ -11,7 +12,7 @@ type Props = {
   linkUrl: string
 }
 
-export const MenuItem = ({ title, icon, color, linkUrl }: Props) => {
+export const MenuLink = ({ title, icon, color, linkUrl }: Props) => {
   return (
     <NavLink to={linkUrl}>
       <StyledItem>
