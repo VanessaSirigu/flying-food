@@ -9,7 +9,6 @@ type Props = {
   name: IconName
   size?: SizeProp
   color?: ThemeColor
-  bgColor?: ThemeColor
   className?: string
 }
 
