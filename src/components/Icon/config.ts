@@ -9,8 +9,6 @@ import { faStarHalfAlt } from '@fortawesome/free-regular-svg-icons'
 import { faStar as farFaStar, faClock } from '@fortawesome/free-regular-svg-icons'
 import { faStar as fasFaStar, faHamburger } from '@fortawesome/free-solid-svg-icons'
 
-export type IconName = keyof typeof iconMap
-
 export const iconMap = {
   fullStar: fasFaStar,
   halfStar: faStarHalfAlt,
