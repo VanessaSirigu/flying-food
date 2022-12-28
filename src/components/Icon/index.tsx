@@ -1,13 +1,7 @@
 import { SizeProp } from '@fortawesome/fontawesome-svg-core'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { theme, ThemeColor } from '../../style/theme'
-
-const iconMap = {
-  star: faStar
-}
-
-export type IconName = keyof typeof iconMap
+import { IconName, iconMap } from './config'
 
 type Props = {
   name: IconName
