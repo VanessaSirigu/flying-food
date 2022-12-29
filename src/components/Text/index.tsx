@@ -13,6 +13,7 @@ export const Text = ({
   uppercase,
   capitalize,
   inline,
+  className,
   color = 'text',
   variant = 'p'
 }: Props) => {
@@ -26,6 +27,7 @@ export const Text = ({
       uppercase={uppercase}
       capitalize={capitalize}
       inline={inline}
+      className={className}
     >
       {children}
     </StyledText>

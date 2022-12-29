@@ -1,8 +1,7 @@
 import { Size, ThemeColor } from '../../style/theme'
 import { Icon, IconName } from '../Icon'
-import { Text } from '../Text'
 import { BaseButton } from './BaseButton'
-import { IconContainer, TextContainer } from './styled'
+import { IconContainer, StyledText } from './styled'
 
 type Props = {
   children: string
@@ -34,11 +33,16 @@ export const Button = ({
 
   return (
     <BaseButton bgColor={backgroundColor} size={size} outlined={outlined}>
-      <TextContainer size={size} hasIcon={!!icon}>
-        <Text variant="span" size={textSize} color={textColor} uppercase>
-          {children}
-        </Text>
-      </TextContainer>
+      <StyledText
+        variant="span"
+        size={textSize}
+        btnSize={size}
+        color={textColor}
+        uppercase
+        hasIcon={!!icon}
+      >
+        {children}
+      </StyledText>
       {icon && (
         <IconContainer bgColor={iconBgColor}>
           <Icon name={icon} color={iconColor} size={iconSize} />

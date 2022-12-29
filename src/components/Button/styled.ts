@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Size, ThemeColor } from '../../style/theme'
 import { center } from '../../style/utils'
+import { Text } from '../Text'
 
 export type StyledBaseButtonProps = {
   bgColor: ThemeColor
@@ -25,6 +26,7 @@ export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
   text-transform: uppercase;
   transition: transform 0.05s ease-in;
   /* align-items: center; */
+  font-family: inherit;
 
   :hover {
     transform: translateY(-1px);
@@ -36,10 +38,10 @@ export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
     cursor: not-allowed;
   }
 `
-export const TextContainer = styled.div<{ size: Size; hasIcon: boolean }>`
-  padding-right: ${({ theme, size, hasIcon }) =>
-    theme.spacings[size] * (hasIcon ? 0.5 : 1)}px;
-  padding-left: ${({ theme, size }) => theme.spacings[size]}px;
+export const StyledText = styled(Text)<{ hasIcon: boolean; btnSize: Size }>`
+  padding-right: ${({ theme, btnSize, hasIcon }) =>
+    theme.spacings[btnSize] * (hasIcon ? 0.5 : 1)}px;
+  padding-left: ${({ theme, btnSize }) => theme.spacings[btnSize]}px;
 `
 export const IconContainer = styled.div<{ bgColor?: ThemeColor }>`
   background-color: ${({ theme, bgColor }) => bgColor && theme.colors[bgColor]};
