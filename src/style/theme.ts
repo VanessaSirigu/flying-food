@@ -7,7 +7,8 @@ export const theme = {
     textInverse: '#F0F0F0',
     background: '#FCFCFC',
     backgroundDark: '#36373B',
-    lightGrey: '#C9C9C9'
+    lightGrey: '#C9C9C9',
+    danger: 'red'
   },
   // Units in REM
   fontSizes: {
@@ -50,11 +51,16 @@ export const theme = {
       lineHeight: 'inherit'
     }
   },
-  radii: [4, 8, 12],
-  spacing: {
-    sm: 8,
-    md: 12,
-    lg: 16
+  radii: [4, 8, 12, 20, 100],
+  spacings: {
+    sm: 16,
+    md: 32,
+    lg: 64
+  },
+  sizes: {
+    sm: 20,
+    md: 34,
+    lg: 48
   }
 } as const
 
@@ -64,7 +70,7 @@ export type ThemeColor = keyof AppTheme['colors']
 
 export type FontSize = keyof AppTheme['fontSizes']
 
-export type Sizes = keyof AppTheme['spacing']
+export type Size = keyof AppTheme['sizes']
 declare module '@emotion/react' {
   export interface Theme extends AppTheme {}
 }
