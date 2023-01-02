@@ -2,13 +2,13 @@ import styled from '@emotion/styled'
 
 export type StyledStackProps = {
   direction: 'vertical' | 'horizontal'
-  align: 'center' | 'baseline'
+  centered?: boolean
   gap: number
 }
 
 export const StyledStack = styled.div<StyledStackProps>`
   display: flex;
-  align-items: ${({ align }) => align};
-  gap: ${({ gap }) => gap}px;
   flex-direction: ${({ direction }) => (direction === 'vertical' ? 'column' : 'row')};
+  gap: ${({ gap }) => gap}px;
+  align-items: ${({ centered }) => centered && 'center'};
 `

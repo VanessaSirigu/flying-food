@@ -1,18 +1,20 @@
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import { StyledStack, StyledStackProps } from './styled'
 
 type Props = {
   children: ReactNode
+  style?: CSSProperties
 } & Partial<StyledStackProps>
 
 export const Stack = ({
   children,
+  centered,
+  style,
   direction = 'horizontal',
-  gap = 12,
-  align = 'center'
+  gap = 20
 }: Props) => {
   return (
-    <StyledStack direction={direction} gap={gap} align={align}>
+    <StyledStack style={style} direction={direction} gap={gap} centered={centered}>
       {children}
     </StyledStack>
   )
