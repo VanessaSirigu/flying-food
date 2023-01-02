@@ -9,7 +9,7 @@ export const StyledImage = styled.img<{
   alt?: string
   fit?: objFit
 }>`
-  width: ${({ width }) => width || '100%'};
+  width: ${({ width }) => `${width}px` || '100%'};
   height: ${({ height }) => height || '100%'};
   object-fit: ${({ fit }) => fit};
 `
