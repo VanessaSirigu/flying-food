@@ -1,4 +1,4 @@
-import { ThemeColor } from '../../style/theme'
+import { ThemeColor, Size } from '../../style/theme'
 import { Text } from '../Text'
 import { StyledTag } from './styled'
 
@@ -7,17 +7,19 @@ type Props = {
   className?: string
   bgColor?: ThemeColor
   textColor?: ThemeColor
+  size?: Size
 }
 
 export const Tag = ({
   title,
   className,
+  size = 'md',
   bgColor = 'secondary',
   textColor = 'textInverse'
 }: Props) => {
   return (
-    <StyledTag bgColor={bgColor} className={className}>
-      <Text color={textColor} uppercase size="sm" bold>
+    <StyledTag bgColor={bgColor} size={size} className={className}>
+      <Text color={textColor} uppercase size={size} bold>
         {title}
       </Text>
     </StyledTag>
