@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { ThemeColor } from '../../style/theme'
-import { Icon } from '../Icon'
-import { IconName } from '../Icon/config'
+import { Icon, IconName } from '../Icon'
 import { Text } from '../Text'
 import { StyledItem } from './styled'
 
