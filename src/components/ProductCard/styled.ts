@@ -1,7 +1,7 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Size } from '../../style/theme'
 import { Tag } from '../Tag'
-import { css } from '@emotion/react'
 
 export const abs = css`
   position: absolute;
@@ -78,6 +78,7 @@ export const StyledProductThumb = styled.div<{ size: Size }>`
 export const StyledTag = styled(Tag)`
   position: absolute;
   height: min-content;
+  padding: 0 10px;
   top: -10px;
   left: 10px;
   z-index: 100;

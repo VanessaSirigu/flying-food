@@ -10,7 +10,8 @@ import { faStar as farFaStar, faClock } from '@fortawesome/free-regular-svg-icon
 import {
   faStar as fasFaStar,
   faHamburger,
-  faBagShopping
+  faBagShopping,
+  faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons'
 
 export const iconMap = {
@@ -24,5 +25,6 @@ export const iconMap = {
   googlePlus: faGooglePlusG,
   linkedin: faLinkedinIn,
   twitter: faTwitter,
-  shop: faBagShopping
+  shopBag: faBagShopping,
+  search: faMagnifyingGlass
 }
