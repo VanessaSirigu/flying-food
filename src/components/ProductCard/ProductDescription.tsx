@@ -13,7 +13,7 @@ type Props = {
 
 export const ProductDescription = ({ productName, isAvailable, stars, price }: Props) => {
   return (
-    <Stack direction="vertical" gap={14}>
+    <Stack direction="vertical" gap={14} centered>
       <Text capitalize bold size="lg">
         {productName}
       </Text>

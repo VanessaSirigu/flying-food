@@ -78,7 +78,7 @@ export const StyledProductThumb = styled.div<{ size: Size }>`
 export const StyledTag = styled(Tag)`
   position: absolute;
   height: min-content;
-  padding: 0 10px;
+  padding: 2px 10px 0 10px;
   top: -10px;
   left: 10px;
   z-index: 100;
