@@ -1,7 +1,17 @@
 import styled from '@emotion/styled'
 import { Size } from '../../style/theme'
-import { abs, pseudo } from '../../style/utils'
 import { Tag } from '../Tag'
+import { css } from '@emotion/react'
+
+export const abs = css`
+  position: absolute;
+  z-index: 2;
+`
+export const pseudo = css`
+  content: '';
+  width: 100%;
+  border-radius: 8px;
+`
 
 export const StyledCard = styled.div<{ size: Size }>`
   padding: ${({ size }) => (size === 'sm' ? '20px 8px' : '42px 16px')};
