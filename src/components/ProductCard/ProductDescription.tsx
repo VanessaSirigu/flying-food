@@ -1,7 +1,7 @@
-import React from 'react'
+import { Size } from '../../style/theme'
 import { Rating } from '../Rating'
-import { Stack } from '../Stack'
 import { Text } from '../Text'
+import { StyledProductDescription } from './styled'
 
 type Props = {
   productName: string
@@ -9,21 +9,30 @@ type Props = {
   stars: number
   price: string
   title?: string
+  size?: Size
 }
 
-export const ProductDescription = ({ productName, isAvailable, stars, price }: Props) => {
+export const ProductDescription = ({
+  productName,
+  isAvailable,
+  size,
+  stars,
+  price
+}: Props) => {
+  const textSize = size === 'sm' ? 'md' : 'lg'
+
   return (
-    <Stack direction="vertical" gap={14} centered>
-      <Text capitalize bold size="lg">
+    <StyledProductDescription direction="vertical" gap={size === 'sm' ? 8 : 14} centered>
+      <Text capitalize bold size={textSize}>
         {productName}
       </Text>
       <Text uppercase bold color="lightGrey" size="sm">
-        Available
+        {isAvailable ? 'Available' : 'Not Avaible'}
       </Text>
       <Rating value={stars} />
-      <Text size="lg" bold>
+      <Text size={textSize} bold>
         $ {price}
       </Text>
-    </Stack>
+    </StyledProductDescription>
   )
 }

@@ -2,7 +2,7 @@ import { Size } from '../../style/theme'
 import { IconButton } from '../Button'
 import { ProductDescription } from './ProductDescription'
 import { ProductThumb } from './ProductThumb'
-import { StyledCard, StyledShopButton, StyledTextWrapper } from './styled'
+import { StyledCard, StyledShopButton } from './styled'
 
 type Props = {
   id?: string
@@ -23,14 +23,19 @@ export const ProductCard = ({
   size = 'md',
   onClick
 }: Props) => {
+  const buttonSize = size === 'md' ? 'lg' : 'md'
   return (
     <StyledCard size={size}>
       <ProductThumb size={size} src={imgSrc} isNew alt={name} />
-      <StyledTextWrapper size={size}>
-        <ProductDescription productName={name} stars={rating} price={price} isAvailable />
-      </StyledTextWrapper>
+      <ProductDescription
+        productName={name}
+        stars={rating}
+        price={price}
+        isAvailable
+        size={size}
+      />
       <StyledShopButton>
-        <IconButton icon="shopBag" size="lg" color="textInverse" />
+        <IconButton icon="shopBag" size={buttonSize} color="textInverse" />
       </StyledShopButton>
     </StyledCard>
   )
