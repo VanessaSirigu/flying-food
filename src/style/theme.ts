@@ -61,6 +61,9 @@ export const theme = {
     sm: 20,
     md: 34,
     lg: 48
+  },
+  containers: {
+    content: 1260
   }
 } as const
 

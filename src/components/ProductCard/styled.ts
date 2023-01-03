@@ -25,6 +25,7 @@ export const StyledCard = styled.div<{ size: Size }>`
     left: 0;
     background-color: white;
     transform: skew(5deg);
+    transform-origin: 0 84px;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
     ${pseudo}
   }
@@ -69,7 +70,6 @@ export const StyledProductThumb = styled.div<{ size: Size }>`
     left: 0;
     background-color: #edeff3;
     transform: skew(5deg);
-    transform-origin: bottom;
     ${pseudo}
     ${abs}
   }
