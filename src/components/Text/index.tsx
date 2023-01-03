@@ -14,6 +14,7 @@ export const Text = ({
   capitalize,
   inline,
   className,
+  centered,
   color = 'text',
   variant = 'p'
 }: Props) => {
@@ -28,6 +29,7 @@ export const Text = ({
       capitalize={capitalize}
       inline={inline}
       className={className}
+      centered={centered}
     >
       {children}
     </StyledText>

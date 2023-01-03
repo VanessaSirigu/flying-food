@@ -23,7 +23,7 @@ export const ProductDescription = ({
 
   return (
     <StyledProductDescription direction="vertical" gap={size === 'sm' ? 8 : 14} centered>
-      <Text capitalize bold size={textSize}>
+      <Text capitalize bold centered size={textSize}>
         {productName}
       </Text>
       <Text uppercase bold color="lightGrey" size="sm">
