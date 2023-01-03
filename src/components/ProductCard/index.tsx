@@ -12,7 +12,7 @@ type Props = {
   rating: number
   price: string
   size?: Size
-  onClick?: (id: string) => void
+  onClick?: () => void
 }
 
 export const ProductCard = ({
@@ -35,7 +35,12 @@ export const ProductCard = ({
         size={size}
       />
       <StyledShopButton>
-        <IconButton icon="shopBag" size={buttonSize} color="textInverse" />
+        <IconButton
+          icon="shopBag"
+          size={buttonSize}
+          color="textInverse"
+          onClick={onClick ? () => onClick() : undefined}
+        />
       </StyledShopButton>
     </StyledCard>
   )

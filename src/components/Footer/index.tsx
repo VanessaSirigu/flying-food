@@ -1,6 +1,6 @@
 import { ThemeColor } from '../../style/theme'
 import { FooterWrapper } from './FooterWrapper'
-import { StyledFooter } from './styled'
+import { FooterContent, StyledFooter } from './styled'
 
 type Props = {
   bgColor?: ThemeColor
