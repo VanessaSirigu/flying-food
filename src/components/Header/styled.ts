@@ -37,6 +37,11 @@ export const StyledUpperHeader = styled.div`
   padding-block: 6px;
   width: 100%;
   margin: 0 auto;
+  & > div > select {
+    background-color: transparent;
+    border: none;
+    color: ${({ theme }) => theme.colors.textInverse};
+  }
 `
 
 export const StyledLowHeader = styled.div`
