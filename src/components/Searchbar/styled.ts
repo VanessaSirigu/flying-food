@@ -5,9 +5,9 @@ export const StyledSearchbar = styled.div<{
 }>`
   display: flex;
   align-items: center;
-  width: max-content;
+  justify-content: space-between;
+  width: 400px;
   border: ${({ theme, outlined }) =>
     outlined ? `2px solid ${theme.colors.textInverse}` : 'none'};
   border-radius: ${({ theme }) => theme.radii.at(3)}px;
-  padding: 4px;
 `
