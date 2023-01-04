@@ -22,7 +22,7 @@ export const StyledFooterLogo = styled.div`
     content: '';
     position: absolute;
     top: 0;
-    left: -230%;
+    left: -246%;
     height: 100%;
     width: 600px;
     background-color: ${({ theme }) => theme.colors.lightGrey};
