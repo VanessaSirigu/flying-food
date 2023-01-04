@@ -5,13 +5,27 @@ import {
   faLinkedinIn,
   faTwitter
 } from '@fortawesome/free-brands-svg-icons'
-import { faStarHalfAlt } from '@fortawesome/free-regular-svg-icons'
+import { faLemon, faStarHalfAlt } from '@fortawesome/free-regular-svg-icons'
 import { faStar as farFaStar, faClock } from '@fortawesome/free-regular-svg-icons'
 import {
   faStar as fasFaStar,
   faHamburger,
   faBagShopping,
-  faMagnifyingGlass
+  faMagnifyingGlass,
+  faPizzaSlice,
+  faBowlFood,
+  faCakeCandles,
+  faMartiniGlassCitrus,
+  faMugHot,
+  faCake,
+  faIceCream,
+  faBowlRice,
+  faCarrot,
+  faLocationDot,
+  faTruck,
+  faMedal,
+  faGift,
+  faUserAlt
 } from '@fortawesome/free-solid-svg-icons'
 
 export const iconMap = {
@@ -26,5 +40,20 @@ export const iconMap = {
   linkedin: faLinkedinIn,
   twitter: faTwitter,
   shopBag: faBagShopping,
-  search: faMagnifyingGlass
+  search: faMagnifyingGlass,
+  pizza: faPizzaSlice,
+  sushi: faBowlFood,
+  cake: faCakeCandles,
+  cocktail: faMartiniGlassCitrus,
+  soup: faMugHot,
+  cheesecake: faCake,
+  iceCream: faIceCream,
+  salad: faBowlRice,
+  vegetable: faCarrot,
+  fruit: faLemon,
+  personal: faUserAlt,
+  map: faLocationDot,
+  delivery: faTruck,
+  reward: faMedal,
+  bonus: faGift
 }
