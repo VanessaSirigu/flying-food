@@ -8,8 +8,6 @@ export const FooterContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: red; */
-  /* gap: 60px; */
   padding-block: ${theme.spacings.md * 3}px;
 `
 
