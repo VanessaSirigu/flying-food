@@ -1,9 +1,9 @@
-import { Footer } from '../../components/Footer'
+import { Sidebar } from '../../components/Sidebar'
 
 export const Homepage = () => {
   return (
     <div>
-      <Footer />
+      <Sidebar />
     </div>
   )
 }
