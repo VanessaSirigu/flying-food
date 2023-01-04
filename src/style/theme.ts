@@ -11,8 +11,7 @@ export const theme = {
     lightGrey: '#C9C9C9',
     danger: 'red',
     darkBlue: '#24478B',
-    secondaryLight: '#A3C3FA',
-    darkGrey: '#4A4B4F'
+    secondaryLight: '#A3C3FA'
   },
   // Units in REM
   fontSizes: {

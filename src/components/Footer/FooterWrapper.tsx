@@ -1,5 +1,5 @@
 import { footerLinks } from '../../Utils/footerLinks'
-import Logo from '../Logo'
+import { Logo } from '../Logo'
 import { SocialIcon } from '../SocialIcon'
 import { WorkingHours } from '../WorkingHours'
 import { FooterMenuList } from './FooterMenuList'

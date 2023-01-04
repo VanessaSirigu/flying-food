@@ -5,7 +5,7 @@ import {
   faLinkedinIn,
   faTwitter
 } from '@fortawesome/free-brands-svg-icons'
-import { faLemon, faStarHalfAlt } from '@fortawesome/free-regular-svg-icons'
+import { faHeart, faLemon, faStarHalfAlt } from '@fortawesome/free-regular-svg-icons'
 import { faStar as farFaStar, faClock } from '@fortawesome/free-regular-svg-icons'
 import {
   faStar as fasFaStar,
@@ -55,5 +55,6 @@ export const iconMap = {
   map: faLocationDot,
   delivery: faTruck,
   reward: faMedal,
-  bonus: faGift
+  bonus: faGift,
+  heart: faHeart
 }
