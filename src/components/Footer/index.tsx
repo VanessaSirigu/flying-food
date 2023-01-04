@@ -1,8 +1,5 @@
 import { ThemeColor } from '../../style/theme'
-import Logo from '../Logo'
-import { Newsletter } from '../Newsletter'
-import { Stack } from '../Stack'
-import { Text } from '../Text'
+import { Newsletter } from '../NewsletterBanner'
 import { FooterWrapper } from './FooterWrapper'
 import { StyledFooter, StyledText } from './styled'
 

@@ -10,6 +10,8 @@ type Props = {
   label?: string
   value?: string
   id?: string
+  width?: number
+  className?: string
   onChange?: (value: string) => void
 } & Partial<StyledInputProps>
 
@@ -19,6 +21,8 @@ export const Input = ({
   value,
   id,
   placeholder,
+  width,
+  className,
   onChange,
   size = 'md',
   type = 'text',
@@ -34,6 +38,8 @@ export const Input = ({
         </StyledLabel>
       )}
       <StyledInput
+        className={className}
+        width={width}
         inputSize={size}
         type={type}
         placeholder={placeholder}

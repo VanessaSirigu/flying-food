@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
-import { BaseButton } from '../Button'
+import { Button } from '../Button'
 import { Image } from '../Image'
+import { Input } from '../Input'
 
 export const StyledNewsletter = styled.div`
   max-width: ${({ theme }) => theme.containers.content}px;
@@ -20,23 +21,15 @@ export const StyledInputWrapper = styled.div`
   position: relative;
 `
 
-export const StyledInput = styled.input`
+export const StyledInput = styled(Input)`
   width: 700px;
-  border: none;
-  background-color: ${({ theme }) => theme.colors.secondaryLight};
-  border-radius: ${({ theme }) => theme.radii.at(4)}px;
-  outline: none;
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.textInverse};
-    padding-left: 8px;
-  }
 `
 
-export const NewsButton = styled(BaseButton)`
-  padding-inline: ${({ theme }) => theme.spacings.lg * 2}px;
-  color: ${({ theme }) => theme.colors.textInverse};
-  position: relative;
-  left: -30px;
+export const NewsButton = styled(Button)`
+  padding-inline: ${({ theme }) => theme.spacings.lg * 1.5}px;
+  position: absolute;
+  top: 0;
+  right: 60px;
 `
 
 export const StyledImage = styled(Image)`

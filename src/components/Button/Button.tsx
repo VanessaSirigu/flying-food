@@ -13,6 +13,7 @@ type Props = {
   outlined?: boolean
   size?: Size
   inverse?: boolean
+  className?: string
   onClick?: () => void
 }
 
@@ -24,6 +25,7 @@ export const Button = ({
   iconBgColor,
   inverse,
   onClick,
+  className,
   bgColor = 'primary',
   color = 'text',
   size = 'md'
@@ -39,6 +41,7 @@ export const Button = ({
       size={size}
       outlined={outlined}
       onClick={onClick}
+      className={className}
     >
       <StyledText
         variant="span"

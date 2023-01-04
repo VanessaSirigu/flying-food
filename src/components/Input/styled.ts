@@ -15,6 +15,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   background-color: ${({ theme, bgColor }) => bgColor && theme.colors[bgColor]};
   height: ${({ theme, inputSize }) => theme.sizes[inputSize]}px;
   padding-inline: 16px;
+
   :focus {
     outline: none;
   }
