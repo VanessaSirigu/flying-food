@@ -1,17 +1,24 @@
 import { ThemeColor } from '../../style/theme'
-import { IconName } from '../Icon'
 import { MenuLink } from '../MenuLink'
+import { StyledMenuList } from './styled'
 
-type Props = {
-  textColor?: ThemeColor
-  icon?: IconName
+export type FooterLinksInfo = {
+  id: number
   tag: string
+  url: string
 }
 
-export const FooterMenuList = ({ textColor }: Props) => {
+type Props = {
+  footerListData: FooterLinksInfo[]
+  textColor?: ThemeColor
+}
+
+export const FooterMenuList = ({ footerListData, textColor = 'lightGrey' }: Props) => {
   return (
-    <div>
-      <MenuLink title="test" color={textColor} linkUrl="#" />
-    </div>
+    <StyledMenuList>
+      {footerListData.map((el) => {
+        return <MenuLink key={el.id} title={el.tag} linkUrl={el.url} color={textColor} />
+      })}
+    </StyledMenuList>
   )
 }

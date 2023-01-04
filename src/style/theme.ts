@@ -8,7 +8,9 @@ export const theme = {
     background: '#FCFCFC',
     backgroundDark: '#36373B',
     lightGrey: '#C9C9C9',
-    danger: 'red'
+    danger: 'red',
+    darkBlue: '#24478B',
+    secondaryLight: '#A3C3FA'
   },
   // Units in REM
   fontSizes: {
