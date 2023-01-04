@@ -3,14 +3,18 @@ import styled from '@emotion/styled'
 export const StyledSidebar = styled.div`
   border-top-right-radius: ${({ theme }) => theme.radii.at(3)}px;
   border-bottom-right-radius: ${({ theme }) => theme.radii.at(3)}px;
-  padding-left: ${({ theme }) => theme.spacings.lg}px;
+  padding-inline: ${({ theme }) => theme.spacings.lg}px;
   padding-block: ${({ theme }) => theme.spacings.xl}px;
   background-color: ${({ theme }) => theme.colors.backgroundDark};
-  width: 174px;
+  width: max-content;
   height: max-content;
-  margin-block: 50px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 64px;
+  gap: 32px;
+
+  > div > div {
+    border-bottom: ${({ theme }) => `1px solid ${theme.colors.lightGrey}`};
+    padding-bottom: ${({ theme }) => theme.spacings.lg}px;
+  }
 `
