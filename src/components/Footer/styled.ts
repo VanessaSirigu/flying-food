@@ -16,6 +16,18 @@ export const StyledFooterLogo = styled.div`
   padding-right: ${theme.spacings.md}px;
   border-top-right-radius: ${theme.radii.at(4)}px;
   border-bottom-right-radius: ${theme.radii.at(4)}px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -246%;
+    height: 100%;
+    width: 600px;
+    background-color: ${({ theme }) => theme.colors.lightGrey};
+    z-index: 10;
+  }
 `
 
 export const StyledWorkingHours = styled.div`
