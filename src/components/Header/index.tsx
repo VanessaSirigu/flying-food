@@ -1,13 +1,13 @@
 import { Avatar } from '../Avatar'
 import { Button, IconButton } from '../Button'
-import { Searchbar } from '../Searchbar'
 import {
   StyledHeader,
   StyledRightSide,
   StyledSignIn,
   StyledLowHeaderContent,
   StyledLogo,
-  StyledLowHeader
+  StyledLowHeader,
+  StyledSearch
 } from './styled'
 import { UpperHeader } from './UpperHeader'
 
@@ -20,7 +20,7 @@ export const Header = () => {
       <StyledLowHeader>
         <StyledLogo />
         <StyledLowHeaderContent justify="space-between">
-          <Searchbar outlined />
+          <StyledSearch outlined />
           <StyledRightSide>
             <IconButton
               size="lg"

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Logo } from '../Logo'
+import { Searchbar } from '../Searchbar'
 import { Text } from '../Text'
 
 export const StyledHeader = styled.header`
@@ -65,10 +66,15 @@ export const StyledLowHeaderContent = styled(StyledContainer)`
   ::after {
     content: '';
     position: absolute;
-    width: 200px;
-    right: -170px;
+    top: 0;
+    right: calc((100vw - 1260px) / -2);
     height: 100%;
+    width: calc((100vw - 1260px) / 2);
     background-color: ${({ theme }) => theme.colors.backgroundDark};
-    z-index: -1;
+    z-index: 10;
   }
+`
+
+export const StyledSearch = styled(Searchbar)`
+  /* margin-left: 120px; */
 `
