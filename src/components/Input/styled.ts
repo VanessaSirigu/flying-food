@@ -9,7 +9,6 @@ export type StyledInputProps = {
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
-  width: 100%;
   border: none;
   color: ${({ theme, textColor }) => theme.colors[textColor]};
   border-radius: ${({ theme }) => theme.radii.at(3)}px;

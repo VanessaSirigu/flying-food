@@ -8,7 +8,7 @@ export const FooterContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: ${theme.spacings.md * 3}px;
+  padding-block: ${theme.spacings.md * 4}px;
 `
 
 export const StyledFooterLogo = styled.div`
@@ -45,21 +45,16 @@ export const StyledMenuList = styled.div`
 export const StyledText = styled(Text)`
   border-top: ${({ theme }) => `1px solid ${theme.colors.lightGrey}`};
   width: 100%;
+  display: block;
   text-align: center;
-  justify-self: baseline;
-  padding-top: ${({ theme }) => theme.spacings.md}px;
+  padding-block: ${({ theme }) => theme.spacings.md}px;
 `
 
 export const StyledFooter = styled.footer<{
   bgColor: ThemeColor
 }>`
-  height: 224px;
   width: 100%;
   background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
   border-top-left-radius: ${({ theme }) => theme.radii[3]}px;
   border-top-right-radius: ${({ theme }) => theme.radii[3]}px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `
