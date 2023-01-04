@@ -67,9 +67,9 @@ export const StyledLowHeaderContent = styled(StyledContainer)`
     content: '';
     position: absolute;
     top: 0;
-    right: calc((100vw - 1260px) / -2);
+    right: ${({ theme }) => `calc((100vw - ${theme.containers.content}px) / -2)`};
     height: 100%;
-    width: calc((100vw - 1260px) / 2);
+    width: ${({ theme }) => `calc((100vw - ${theme.containers.content}px) / 2)`};
     background-color: ${({ theme }) => theme.colors.backgroundDark};
     z-index: 10;
   }

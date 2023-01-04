@@ -26,7 +26,7 @@ export const Logo = ({ inverse, className, direction = 'vertical' }: Props) => {
         <Text {...textProps} bold>
           Flying
         </Text>
-        \<Text {...textProps}>Food</Text>
+        <Text {...textProps}>Food</Text>
       </Stack>
     </Stack>
   )
