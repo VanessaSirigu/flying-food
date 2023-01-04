@@ -5,7 +5,7 @@ import {
   faLinkedinIn,
   faTwitter
 } from '@fortawesome/free-brands-svg-icons'
-import { faStarHalfAlt } from '@fortawesome/free-regular-svg-icons'
+import { faHeart, faStarHalfAlt } from '@fortawesome/free-regular-svg-icons'
 import { faStar as farFaStar, faClock } from '@fortawesome/free-regular-svg-icons'
 import {
   faStar as fasFaStar,
@@ -26,5 +26,6 @@ export const iconMap = {
   linkedin: faLinkedinIn,
   twitter: faTwitter,
   shopBag: faBagShopping,
-  search: faMagnifyingGlass
+  search: faMagnifyingGlass,
+  heart: faHeart
 }
