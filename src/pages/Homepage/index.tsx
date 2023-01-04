@@ -1,8 +1,9 @@
 import { Footer } from '../../components/Footer'
+import { FooterWrapper } from '../../components/Footer/FooterWrapper'
 
 export const Homepage = () => {
   return (
-    <div style={{ display: 'flex', gap: 20 }}>
+    <div>
       {/* <ProductCard
         imgSrc="https://www.nicepng.com/png/full/52-522825_hamburguesas-de-burger-king.png"
         name="Angus Burger"
@@ -11,6 +12,7 @@ export const Homepage = () => {
         price="4.50"
       /> */}
       <Footer />
+      {/* <FooterWrapper /> */}
     </div>
   )
 }
