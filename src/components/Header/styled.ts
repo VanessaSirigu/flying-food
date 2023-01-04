@@ -6,7 +6,6 @@ export const StyledHeader = styled.header``
 
 export const StyledContainer = styled.div<{
   justify?: string
-  gap?: number
   after?: boolean
   className?: string
 }>`
@@ -20,10 +19,11 @@ export const StyledContainer = styled.div<{
 export const StyledSignIn = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundDark};
   display: flex;
-  padding-block: 4px;
+  padding-inline: 4px;
   align-items: center;
   border-radius: 50px 0 0 50px;
-  gap: 4px;
+  /* gap: 4px; */
+  gap: 10px;
 `
 
 export const StyledRightSide = styled.div`
@@ -31,21 +31,22 @@ export const StyledRightSide = styled.div`
   gap: 10px;
 `
 
-export const StyledHighRow = styled.div`
+export const StyledUpperHeader = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundDark};
   padding-block: 6px;
   width: 100%;
   margin: 0 auto;
 `
 
-export const StyledLowRow = styled.div`
-  margin-top: 10px;
+export const StyledLowHeader = styled.div`
   position: relative;
+  margin-top: 10px;
 `
 
 export const StyledWorkingHours = styled(Text)`
   border-right: 1px solid ${({ theme }) => theme.colors.textInverse};
   padding-right: 14px;
+  margin-right: 8px;
 `
 
 export const StyledLogo = styled(Logo)`
@@ -53,12 +54,13 @@ export const StyledLogo = styled(Logo)`
   left: 10px;
   bottom: -20px;
 `
-export const StyledLowHeader = styled(StyledContainer)`
+export const StyledLowHeaderContent = styled(StyledContainer)`
+  position: relative;
   ::after {
     content: '';
     position: absolute;
     width: 200px;
-    right: 0;
+    right: -199px;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.backgroundDark};
     z-index: -1;

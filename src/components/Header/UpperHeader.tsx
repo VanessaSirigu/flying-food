@@ -1,5 +1,5 @@
 import { Select } from '../Select'
-import { StyledContainer, StyledHighRow, StyledWorkingHours } from './styled'
+import { StyledContainer, StyledUpperHeader, StyledWorkingHours } from './styled'
 
 type Props = {
   opening: string
@@ -9,13 +9,13 @@ type Props = {
 
 export const UpperHeader = ({ opening, closing, options }: Props) => {
   return (
-    <StyledHighRow>
-      <StyledContainer justify="flex-end" gap={20}>
+    <StyledUpperHeader>
+      <StyledContainer justify="flex-end">
         <StyledWorkingHours variant="p" color="textInverse" size="sm" uppercase>
           working hours {opening} - {closing}
         </StyledWorkingHours>
         <Select options={options} name="languages" />
       </StyledContainer>
-    </StyledHighRow>
+    </StyledUpperHeader>
   )
 }

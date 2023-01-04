@@ -5,7 +5,7 @@ import {
   StyledHeader,
   StyledRightSide,
   StyledSignIn,
-  StyledLowRow,
+  StyledLowHeaderContent,
   StyledLogo,
   StyledLowHeader
 } from './styled'
@@ -13,18 +13,13 @@ import { UpperHeader } from './UpperHeader'
 
 const languages = ['EN', 'IT']
 
-type Props = {
-  opening: string
-  closing: string
-}
-
-export const Header = ({ opening, closing }: Props) => {
+export const Header = () => {
   return (
     <StyledHeader>
-      <UpperHeader opening={opening} closing={closing} options={languages} />
-      <StyledLowRow>
+      <UpperHeader opening="8:00" closing="20:00" options={languages} />
+      <StyledLowHeader>
         <StyledLogo />
-        <StyledLowHeader justify="space-between">
+        <StyledLowHeaderContent justify="space-between">
           <Searchbar outlined />
           <StyledRightSide>
             <IconButton
@@ -36,13 +31,13 @@ export const Header = ({ opening, closing }: Props) => {
             <Button size="lg">Web Site</Button>
             <StyledSignIn>
               <Avatar imgSrc="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" />
-              <Button bgColor="backgroundMedium" color="textInverse">
+              <Button bgColor="darkGrey" color="textInverse">
                 Sign Off
               </Button>
             </StyledSignIn>
           </StyledRightSide>
-        </StyledLowHeader>
-      </StyledLowRow>
+        </StyledLowHeaderContent>
+      </StyledLowHeader>
     </StyledHeader>
   )
 }
