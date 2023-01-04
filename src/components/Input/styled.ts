@@ -9,13 +9,13 @@ export type StyledInputProps = {
 }
 
 export const StyledInput = styled.input<StyledInputProps>`
-  width: 100%;
   border: none;
   color: ${({ theme, textColor }) => theme.colors[textColor]};
   border-radius: ${({ theme }) => theme.radii.at(3)}px;
   background-color: ${({ theme, bgColor }) => bgColor && theme.colors[bgColor]};
   height: ${({ theme, inputSize }) => theme.sizes[inputSize]}px;
   padding-inline: 16px;
+
   :focus {
     outline: none;
   }

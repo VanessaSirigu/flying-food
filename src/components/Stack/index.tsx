@@ -17,11 +17,11 @@ export const Stack = ({
 }: Props) => {
   return (
     <StyledStack
+      className={className}
       style={style}
       direction={direction}
       gap={gap}
       centered={centered}
-      className={className}
     >
       {children}
     </StyledStack>

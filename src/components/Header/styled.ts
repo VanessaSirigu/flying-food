@@ -2,7 +2,9 @@ import styled from '@emotion/styled'
 import { Logo } from '../Logo'
 import { Text } from '../Text'
 
-export const StyledHeader = styled.header``
+export const StyledHeader = styled.header`
+  margin-bottom: 32px;
+`
 
 export const StyledContainer = styled.div<{
   justify?: string
@@ -22,7 +24,6 @@ export const StyledSignIn = styled.div`
   padding-inline: 4px;
   align-items: center;
   border-radius: 50px 0 0 50px;
-  /* gap: 4px; */
   gap: 10px;
 `
 
@@ -60,7 +61,7 @@ export const StyledLowHeaderContent = styled(StyledContainer)`
     content: '';
     position: absolute;
     width: 200px;
-    right: -199px;
+    right: -170px;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.backgroundDark};
     z-index: -1;

@@ -8,7 +8,7 @@ export const StyledTag = styled.div<{
 }>`
   background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
   border-radius: ${({ theme }) => theme.radii.at(2)}px;
-  padding-inline: ${({ theme, size }) => theme.spacings[size]};
-  padding-block: ${({ theme, size }) => theme.spacings[size]};
+  padding-inline: ${({ theme, size }) => theme.spacings[size]}px;
+  padding-block: ${({ theme, size }) => theme.spacings[size] / 2}px;
   /* width: fit-content; */
 `

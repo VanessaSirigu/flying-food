@@ -1,15 +1,13 @@
-import { ProductCard } from '../../components/ProductCard'
+import { Footer } from '../../components/Footer'
+import { Header } from '../../components/Header'
+import { Sidebar } from '../../components/Sidebar'
 
 export const Homepage = () => {
   return (
     <div>
-      <ProductCard
-        imgSrc="https://www.nicepng.com/png/full/52-522825_hamburguesas-de-burger-king.png"
-        name="Angus Burger"
-        rating={2}
-        isAvailable
-        price="4.50"
-      />
+      <Header />
+      <Sidebar />
+      <Footer />
     </div>
   )
 }

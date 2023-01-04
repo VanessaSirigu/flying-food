@@ -13,6 +13,7 @@ export type StyledTextProps = {
   uppercase?: boolean
   capitalize?: boolean
   inline?: boolean
+  centered?: boolean
 }
 
 export const StyledText = styled.p<StyledTextProps>`
@@ -29,4 +30,5 @@ export const StyledText = styled.p<StyledTextProps>`
   text-transform: ${({ uppercase }) => uppercase && 'uppercase'};
   text-transform: ${({ capitalize }) => capitalize && 'capitalize'};
   display: ${({ inline }) => inline && 'inline-block'};
+  text-align: ${({ centered }) => centered && 'center'};
 `

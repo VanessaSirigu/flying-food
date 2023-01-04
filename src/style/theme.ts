@@ -9,7 +9,9 @@ export const theme = {
     darkGrey: '#4a4b4f',
     backgroundDark: '#36373B',
     lightGrey: '#C9C9C9',
-    danger: 'red'
+    danger: 'red',
+    darkBlue: '#24478B',
+    secondaryLight: '#A3C3FA'
   },
   // Units in REM
   fontSizes: {
@@ -54,9 +56,10 @@ export const theme = {
   },
   radii: [4, 8, 12, 20, 50, 100],
   spacings: {
-    sm: 16,
-    md: 32,
-    lg: 64
+    sm: 8,
+    md: 16,
+    lg: 32,
+    xl: 42
   },
   sizes: {
     sm: 20,
