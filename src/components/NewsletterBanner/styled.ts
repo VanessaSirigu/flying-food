@@ -22,14 +22,14 @@ export const StyledInputWrapper = styled.div`
 `
 
 export const StyledInput = styled(Input)`
-  width: 700px;
+  width: 100%;
 `
 
 export const NewsButton = styled(Button)`
   padding-inline: ${({ theme }) => theme.spacings.lg * 1.5}px;
   position: absolute;
   top: 0;
-  right: 60px;
+  right: 0;
 `
 
 export const StyledImage = styled(Image)`

@@ -1,5 +1,5 @@
 import { Size, ThemeColor } from '../../style/theme'
-import { StyledInput, StyledInputProps, StyledLabel } from './styled'
+import { StyledInput, StyledInputProps, StyledLabel, StyledContainer } from './styled'
 
 type Props = {
   textColor?: ThemeColor
@@ -31,7 +31,7 @@ export const Input = ({
   textColor = 'text'
 }: Props) => {
   return (
-    <div>
+    <StyledContainer>
       {label && (
         <StyledLabel color={labelColor} htmlFor={id}>
           {label}
@@ -50,6 +50,6 @@ export const Input = ({
         id={id}
         onChange={onChange ? (event) => onChange(event.target.value) : undefined}
       />
-    </div>
+    </StyledContainer>
   )
 }

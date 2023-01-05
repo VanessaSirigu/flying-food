@@ -31,3 +31,7 @@ export const StyledLabel = styled.label<{ color: ThemeColor }>`
   margin-bottom: 8px;
   display: inline-block;
 `
+
+export const StyledContainer = styled.div`
+  width: 100%;
+`
