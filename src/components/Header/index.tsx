@@ -13,9 +13,13 @@ import { UpperHeader } from './UpperHeader'
 
 const languages = ['EN', 'IT']
 
-export const Header = () => {
+type Props = {
+  className?: string
+}
+
+export const Header = ({ className }: Props) => {
   return (
-    <StyledHeader>
+    <StyledHeader className={className}>
       <UpperHeader opening="8:00" closing="20:00" options={languages} />
       <StyledLowHeader>
         <StyledLogo />

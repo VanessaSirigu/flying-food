@@ -1,5 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Layout } from './components/Layout'
 import { Cart } from './pages/Cart'
 import { Homepage } from './pages/Homepage'
 import { NotFound } from './pages/NotFound'
@@ -11,23 +12,29 @@ import { theme } from './style/theme'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Homepage />
-  },
-  {
-    path: '/products',
-    element: <Products />
-  },
-  {
-    path: '/cart',
-    element: <Cart />
-  },
-  {
-    path: '/products/:id',
-    element: <ProductDetail />
-  },
-  {
-    path: '*',
-    element: <NotFound />
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Homepage />
+      },
+      {
+        path: '/products',
+        element: <Products />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
+      },
+      {
+        path: '/products/:id',
+        element: <ProductDetail />
+      },
+      {
+        path: '*',
+        element: <NotFound />
+      }
+    ]
   }
 ])
 

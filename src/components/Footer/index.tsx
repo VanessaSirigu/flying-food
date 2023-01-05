@@ -5,11 +5,12 @@ import { StyledFooter, StyledText } from './styled'
 
 type Props = {
   bgColor?: ThemeColor
+  className?: string
 }
 
-export const Footer = ({ bgColor = 'backgroundDark' }: Props) => {
+export const Footer = ({ className, bgColor = 'backgroundDark' }: Props) => {
   return (
-    <div>
+    <div className={className}>
       <Newsletter />
       <StyledFooter bgColor={bgColor}>
         <FooterWrapper />
