@@ -8,6 +8,7 @@ export const FooterContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 48px;
   padding-block: ${theme.spacings.md * 4}px;
 `
 
@@ -53,7 +54,7 @@ export const StyledText = styled(Text)`
 export const StyledFooter = styled.footer<{
   bgColor: ThemeColor
 }>`
-  width: 100%;
+  width: 100vw;
   background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
   border-top-left-radius: ${({ theme }) => theme.radii[3]}px;
   border-top-right-radius: ${({ theme }) => theme.radii[3]}px;
