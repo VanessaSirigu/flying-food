@@ -30,7 +30,7 @@ export const NewsButton = styled(Button)`
   padding-inline: ${({ theme }) => theme.spacings.lg * 1.5}px;
   position: absolute;
   top: 0;
-  right: 60px;
+  right: 24px;
 `
 
 export const StyledImage = styled(Image)`
