@@ -1,22 +1,23 @@
 import styled from '@emotion/styled'
 import { Sidebar } from '../Sidebar'
 
-// TODO: fix positioning
+const SIDEBAR_WIDTH = 200
+
 export const StyledMain = styled.main`
   display: flex;
-  position: relative;
+`
 
-  .content {
-    max-width: ${({ theme }) => theme.containers.content}px;
-    margin: 0 auto;
-    flex: 1;
-    min-height: 100vh;
-    //padding: ${({ theme }) => theme.spacings.md}px;
+export const StyledContent = styled.div`
+  max-width: ${({ theme }) => theme.containers.content}px;
+  margin-left: 0;
+  flex: 1;
+
+  @media screen and (min-width: ${(p) => p.theme.containers.content + SIDEBAR_WIDTH}px) {
+    margin-left: ${({ theme }) =>
+      `max(calc((100vw - ${theme.containers.content}px) / 2 - ${SIDEBAR_WIDTH}px), 0px)`};
   }
 `
 
 export const StyledSidebar = styled(Sidebar)`
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: ${SIDEBAR_WIDTH}px;
 `

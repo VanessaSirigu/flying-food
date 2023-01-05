@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { Footer } from '../Footer'
 import { Header } from '../Header'
-import { StyledMain, StyledSidebar } from './styled'
+import { StyledContent, StyledMain, StyledSidebar } from './styled'
 
 export const Layout = () => {
   return (
@@ -9,9 +9,9 @@ export const Layout = () => {
       <Header />
       <StyledMain>
         <StyledSidebar />
-        <div className="content">
+        <StyledContent>
           <Outlet />
-        </div>
+        </StyledContent>
       </StyledMain>
       <Footer />
     </>
