@@ -40,7 +40,8 @@ export const StyledWorkingHours = styled.div`
 export const StyledMenuList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  column-gap: ${({ theme }) => theme.spacings.lg}px;
+  row-gap: ${({ theme }) => theme.spacings.sm}px;
 `
 
 export const StyledText = styled(Text)`
