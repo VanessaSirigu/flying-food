@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Size } from '../../style/theme'
+import { center } from '../../style/utils'
 import { Stack } from '../Stack'
 import { Tag } from '../Tag'
 
@@ -10,7 +11,7 @@ export const StyledCard = styled.div<{ size: Size }>`
   padding: ${({ size }) => (size === 'sm' ? '20px 8px' : '42px 16px')};
   max-width: ${({ size }) => (size === 'sm' ? 180 : 240)}px;
   transform: skewX(${SKEW}deg);
-  height: max-content;
+  height: 100%;
 
   &::before {
     content: '';
@@ -51,9 +52,16 @@ export const StyledProductThumb = styled.div<{ size: Size }>`
   border-radius: 8px;
   padding: 0px 24px;
   background-color: #edeff3;
+  /* display: flex;
+  justify-content: center; */
+  ${center}
+  height: 100px;
 
   & > img {
     transform: translateY(-16%) skew(-${SKEW}deg);
+    height: 100%;
+    max-height: 100px;
+    object-fit: contain;
   }
 `
 
