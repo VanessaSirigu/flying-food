@@ -27,7 +27,7 @@ export const Products = () => {
       })
   }, [])
 
-  const onSelect = (tag) => {}
+  const onSelect = () => {}
 
   return (
     <div>

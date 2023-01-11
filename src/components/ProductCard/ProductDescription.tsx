@@ -19,7 +19,7 @@ export const ProductDescription = ({
   stars,
   price
 }: Props) => {
-  const textSize = size === 'sm' ? 'md' : 'lg'
+  const textSize = size === 'sm' ? 'md' : 'mx'
 
   return (
     <StyledProductDescription direction="vertical" gap={size === 'sm' ? 8 : 14} centered>
@@ -31,7 +31,7 @@ export const ProductDescription = ({
       </Text>
       <Rating value={stars} />
       <Text size={textSize} bold>
-        $ {price}
+        {price}
       </Text>
     </StyledProductDescription>
   )

@@ -9,7 +9,6 @@ export const StyledHeader = styled.header`
 
 export const StyledContainer = styled.div<{
   justify?: string
-  after?: boolean
   className?: string
 }>`
   display: flex;
@@ -60,7 +59,12 @@ export const StyledLogo = styled(Logo)`
   position: absolute;
   left: 10px;
   bottom: -20px;
+
+  @media screen and (max-width: ${(p) => p.theme.containers.content + 220}px) {
+    display: none;
+  }
 `
+
 export const StyledLowHeaderContent = styled(StyledContainer)`
   position: relative;
   ::after {

@@ -7,7 +7,9 @@ export const Select = ({ options, name }: Props) => {
   return (
     <select name={name} id={name}>
       {options.map((option) => (
-        <option value={option}>{option}</option>
+        <option value={option} key={option}>
+          {option}
+        </option>
       ))}
     </select>
   )
