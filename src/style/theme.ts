@@ -17,6 +17,7 @@ export const theme = {
   fontSizes: {
     sm: 0.8,
     md: 1,
+    mx: 1.2,
     lg: 1.6,
     xl: 2.2
   },
@@ -67,7 +68,7 @@ export const theme = {
     lg: 48
   },
   containers: {
-    content: 1260
+    content: 800
   }
 } as const
 

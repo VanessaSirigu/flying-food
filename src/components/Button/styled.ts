@@ -7,6 +7,7 @@ export type StyledBaseButtonProps = {
   bgColor: ThemeColor
   radius: number | string
   size: Size
+  bold?: boolean
   outlined?: boolean
   squared?: boolean
 }
@@ -25,8 +26,10 @@ export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
   ${center}
   text-transform: uppercase;
   transition: transform 0.05s ease-in;
-  /* align-items: center; */
   font-family: inherit;
+  span {
+    font-weight: ${({ bold }) => bold && 'bold'};
+  }
 
   :hover {
     transform: translateY(-1px);

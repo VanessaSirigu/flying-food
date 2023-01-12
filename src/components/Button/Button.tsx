@@ -14,6 +14,7 @@ type Props = {
   size?: Size
   inverse?: boolean
   className?: string
+  bold?: boolean
   onClick?: () => void
 }
 
@@ -24,6 +25,7 @@ export const Button = ({
   iconColor,
   iconBgColor,
   inverse,
+  bold,
   onClick,
   className,
   bgColor = 'primary',
@@ -37,6 +39,7 @@ export const Button = ({
 
   return (
     <BaseButton
+      bold={bold}
       bgColor={backgroundColor}
       size={size}
       outlined={outlined}

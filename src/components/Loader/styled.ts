@@ -1,4 +1,10 @@
 import styled from '@emotion/styled'
+import { center } from '../../style/utils'
+
+export const StyledContainer = styled.div`
+  ${center}
+  height: 300px;
+`
 
 export const StyledLoader = styled.div`
   width: 100px;

@@ -1,32 +1,45 @@
 import { useEffect, useState } from 'react'
-import { getProducts } from '../../api'
-import { ProductDto } from '../../api/types'
+import { getProducts, getTags } from '../../api'
+import { ProductDto, TagDto } from '../../api/types'
+import { FilterItem } from '../../components/Filter'
+import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
+import { ProductsHeader } from './ProductsHeader'
 
 export const Products = () => {
-  const [data, setData] = useState<ProductDto[]>([])
+  const [products, setProducts] = useState<ProductDto[]>()
+  const [tags, setTags] = useState<TagDto[]>([])
+  const [selected, setSelected] = useState<string>()
   const [loading, setLoading] = useState(true)
 
-  const getData = (prod: ProductDto[]) => {
-    setData(prod)
-    setLoading(false)
-  }
-
   useEffect(() => {
-    getProducts()
-      .then((prod) => {
-        getData(prod)
+    Promise.all([getTags(), getProducts()])
+      .then(([tags, products]) => {
+        setTags(tags)
+        setProducts(products)
       })
       .catch((err) => console.log(err))
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
+
+  const handleFilterClick = (tag: FilterItem) => {
+    tag.id === selected ? setSelected('') : setSelected(tag.id)
+  }
 
   return (
     <div>
+      <ProductsHeader
+        selected={selected}
+        items={tags.filter((tag) => !tag.hidden).map(({ name, id }) => ({ name, id }))}
+        onFilterSelect={handleFilterClick}
+      />
       {loading && <Loader />}
-      {data && (
-        <div>
-          {data.map((p, i) => (
+      {products && (
+        <Grid>
+          {products.map((p, i) => (
             <ProductCard
               key={i}
               imgSrc={p.imageUrl}
@@ -35,7 +48,7 @@ export const Products = () => {
               price={`${p.price.type} ${p.price.value}`}
             />
           ))}
-        </div>
+        </Grid>
       )}
     </div>
   )

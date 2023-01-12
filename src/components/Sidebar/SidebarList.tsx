@@ -22,19 +22,20 @@ type Props = {
 export const SidebarList = ({ sidebarListData }: Props) => {
   return (
     <Stack direction="vertical" gap={40}>
-      {sidebarListData.map((el) => {
+      {sidebarListData.map((el, i) => {
         return (
-          <Stack direction="vertical" gap={20}>
+          <Stack direction="vertical" gap={20} key={i}>
             <Text uppercase bold variant="p" size="md" color="textInverse">
               {el.category}
             </Text>
-            {el.links.map((link) => {
+            {el.links.map((link, i) => {
               return (
                 <MenuLink
                   color="textInverse"
                   linkUrl="#"
                   icon={link.icon}
                   title={link.tag}
+                  key={i}
                 />
               )
             })}
