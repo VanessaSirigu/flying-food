@@ -19,8 +19,8 @@ export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
     outlined ? 'transparent' : theme.colors[bgColor]};
   border-radius: ${({ theme, radius }) =>
     typeof radius === 'number' ? `${theme.radii.at(radius)}px` : radius};
-  border: ${({ theme, bgColor, outlined }) =>
-    outlined ? `2px solid ${theme.colors[bgColor]}` : 'none'};
+  border: ${({ theme, outlined }) =>
+    outlined ? `1px solid ${theme.colors['text']}` : 'none'};
   padding: ${({ size }) => (size === 'sm' ? 2 : 4)}px;
   cursor: pointer;
   ${center}

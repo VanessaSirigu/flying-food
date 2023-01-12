@@ -10,8 +10,7 @@ import { ProductsHeader } from './ProductsHeader'
 export const Products = () => {
   const [products, setProducts] = useState<ProductDto[]>()
   const [tags, setTags] = useState<TagDto[]>([])
-  const [selected, setSelected] = useState<string>()
-  const [loading, setLoading] = useState(true)
+  const [selected, setSelected] = useState('')
 
   useEffect(() => {
     Promise.all([getTags(), getProducts()])
@@ -20,14 +19,15 @@ export const Products = () => {
         setProducts(products)
       })
       .catch((err) => console.log(err))
-      .finally(() => {
-        setLoading(false)
-      })
   }, [])
 
   const handleFilterClick = (tag: FilterItem) => {
-    tag.id === selected ? setSelected('') : setSelected(tag.id)
+    setSelected(tag.id === selected ? '' : tag.id)
   }
+
+  const filterProducts = selected
+    ? products?.filter(({ tags }) => tags.includes(selected))
+    : products
 
   return (
     <div>
@@ -36,12 +36,14 @@ export const Products = () => {
         items={tags.filter((tag) => !tag.hidden).map(({ name, id }) => ({ name, id }))}
         onFilterSelect={handleFilterClick}
       />
-      {loading && <Loader />}
-      {products && (
+      {!products && <Loader />}
+      {filterProducts && (
         <Grid>
-          {products.map((p, i) => (
+          {filterProducts.map((p) => (
             <ProductCard
-              key={i}
+              linkUrl
+              key={p.id}
+              id={p.id}
               imgSrc={p.imageUrl}
               name={p.name}
               rating={p.rating}
