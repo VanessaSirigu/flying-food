@@ -10,19 +10,19 @@ import { Text } from '../../components/Text'
 import { StyledCartRow } from './styled'
 
 export const ProductDetail = () => {
-  const params = useParams()
+  const { id } = useParams()
   const [quantity, setQuantity] = useState(0)
   const [product, setProduct] = useState<ProductDto>()
-
   // const { rating, name, imageUrl, price, id, new } = product
 
-  console.log(params)
+  console.log(id)
+
+  const param = id ? id : ''
 
   useEffect(() => {
-    getProductById('3c8a9a55-08b1-4e91-89b9-840f76b27df6')
+    getProductById(param)
       .then((p) => setProduct(p))
       .catch((err) => console.log(err))
-    // .finally(() => setLoading(false))
   }, [])
 
   return (
@@ -31,6 +31,8 @@ export const ProductDetail = () => {
       {product && (
         <div>
           <ProductCard
+            linkUrl
+            id={product.id}
             imgSrc={product.imageUrl}
             name={product.name}
             rating={product.rating}
