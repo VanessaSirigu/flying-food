@@ -1,29 +1,31 @@
-import { StyledFilter, StyledButton } from './styled'
+import { Button } from '../Button'
+import { Stack } from '../Stack'
 
 export type FilterItem = {
   name: string
   id: string
-  hidden?: boolean
 }
 
 type Props = {
   items: FilterItem[]
   selected?: string
-  onSelect?: (item: FilterItem) => void
+  onSelect: (selected: FilterItem) => void
 }
 
 export const Filter = ({ items, selected, onSelect }: Props) => {
-  const bgColor = selected ? 'backgroundDark' : 'textInverse'
-  const textColor = selected ? 'textInverse' : 'text'
   return (
-    <StyledFilter>
-      {items
-        .filter((item) => !item.hidden)
-        .map((item) => (
-          <StyledButton bgColor={bgColor} color={textColor} onClick={() => onSelect}>
-            {item.name}
-          </StyledButton>
-        ))}
-    </StyledFilter>
+    <Stack>
+      {items.map((item) => (
+        <Button
+          bold
+          key={item.id}
+          bgColor={item.id === selected ? 'backgroundDark' : 'textInverse'}
+          color={item.id === selected ? 'textInverse' : 'text'}
+          onClick={() => onSelect(item)}
+        >
+          {item.name}
+        </Button>
+      ))}
+    </Stack>
   )
 }
