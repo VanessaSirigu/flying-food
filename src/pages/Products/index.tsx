@@ -10,7 +10,7 @@ import { ProductsHeader } from './ProductsHeader'
 export const Products = () => {
   const [products, setProducts] = useState<ProductDto[]>()
   const [tags, setTags] = useState<TagDto[]>([])
-  const [selected, setSelected] = useState<string>()
+  const [selected, setSelected] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Products = () => {
   }, [])
 
   const handleFilterClick = (tag: FilterItem) => {
-    tag.id === selected ? setSelected('') : setSelected(tag.id)
+    setSelected(tag.id === selected ? '' : tag.id)
   }
 
   return (
@@ -39,15 +39,17 @@ export const Products = () => {
       {loading && <Loader />}
       {products && (
         <Grid>
-          {products.map((p, i) => (
-            <ProductCard
-              key={i}
-              imgSrc={p.imageUrl}
-              name={p.name}
-              rating={p.rating}
-              price={`${p.price.type} ${p.price.value}`}
-            />
-          ))}
+          {products
+            .filter(({ id, tags }) => tags.includes(selected))
+            .map((p, i) => (
+              <ProductCard
+                key={i}
+                imgSrc={p.imageUrl}
+                name={p.name}
+                rating={p.rating}
+                price={`${p.price.type} ${p.price.value}`}
+              />
+            ))}
         </Grid>
       )}
     </div>
