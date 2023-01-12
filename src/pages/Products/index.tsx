@@ -41,7 +41,7 @@ export const Products = () => {
         <Grid>
           {filterProducts.map((p) => (
             <ProductCard
-              linkUrl
+              linkUrl={p.id}
               key={p.id}
               id={p.id}
               imgSrc={p.imageUrl}

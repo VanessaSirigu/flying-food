@@ -17,6 +17,8 @@ export const StyledPaper = styled(Paper)`
   }
 `
 
+export const StyledRandomProduct = styled.div``
+
 export const OutlinedIcon = styled(IconButton)`
   border-radius: 1px solid black;
   background-color: white;

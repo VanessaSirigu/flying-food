@@ -13,7 +13,7 @@ type Props = {
   rating: number
   price: string
   size?: Size
-  linkUrl?: boolean
+  linkUrl?: string
   onClick?: () => void
 }
 
@@ -28,19 +28,23 @@ export const ProductCard = ({
   onClick
 }: Props) => {
   const buttonSize = size === 'md' ? 'lg' : 'md'
+
+  const cardContent = (
+    <>
+      <ProductThumb size={size} src={imgSrc} isNew alt={name} />
+      <ProductDescription
+        productName={name}
+        stars={rating}
+        price={price}
+        isAvailable
+        size={size}
+      />
+    </>
+  )
+
   return (
     <StyledCard size={size}>
-      <Link to={linkUrl ? id : '#'}>
-        <ProductThumb size={size} src={imgSrc} isNew alt={name} />
-        <ProductDescription
-          productName={name}
-          stars={rating}
-          price={price}
-          isAvailable
-          size={size}
-        />
-      </Link>
-
+      {linkUrl ? <Link to={linkUrl}>{cardContent}</Link> : cardContent}
       <StyledShopButton>
         <IconButton
           icon="shopBag"
