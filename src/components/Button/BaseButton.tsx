@@ -13,6 +13,7 @@ export const BaseButton = ({
   className,
   outlined,
   squared,
+  bold,
   onClick,
   bgColor = 'primary',
   radius = 4,
@@ -20,6 +21,7 @@ export const BaseButton = ({
 }: Props) => {
   return (
     <StyledBaseButton
+      bold={bold}
       bgColor={bgColor}
       radius={radius}
       size={size}
