@@ -5,15 +5,10 @@ export const StyledDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-inline: 32px;
-  margin-bottom: 32px;
+  max-width: ${({ theme }) => theme.containers.content}px;
 `
 
 export const StyledButton = styled(Button)`
   background-color: transparent;
   border: 2px solid ${({ theme }) => theme.colors.text};
-
-  span {
-    font-weight: bold;
-  }
 `
