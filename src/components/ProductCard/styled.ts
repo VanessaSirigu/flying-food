@@ -5,11 +5,12 @@ import { Stack } from '../Stack'
 import { Tag } from '../Tag'
 
 const SKEW = 4
-
+// max-width: ${({ size }) => (size === 'sm' ? 180 : 240)}px;
+// solo quando non ha width auto
 export const StyledCard = styled.div<{ size: Size }>`
   position: relative;
   padding: ${({ size }) => (size === 'sm' ? '20px 8px' : '42px 16px')};
-  max-width: ${({ size }) => (size === 'sm' ? 180 : 240)}px;
+  width: auto;
   transform: skewX(${SKEW}deg);
   height: 100%;
 
@@ -52,8 +53,6 @@ export const StyledProductThumb = styled.div<{ size: Size }>`
   border-radius: 8px;
   padding: 0px 24px;
   background-color: #edeff3;
-  /* display: flex;
-  justify-content: center; */
   ${center}
   height: 100px;
 

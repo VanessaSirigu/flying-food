@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../api'
 import { ProductDto } from '../../api/types'
-import { Button, IconButton } from '../../components/Button'
+import { Button } from '../../components/Button'
 import { Loader } from '../../components/Loader'
 import { QuantitySelector } from '../../components/QuantitySelector'
 import { Rating } from '../../components/Rating'
@@ -12,18 +12,18 @@ import { Text } from '../../components/Text'
 import { StyledPaper } from './styled'
 
 export const ProductDetail = () => {
-  const params = useParams()
+  const { id } = useParams()
   const [product, setProduct] = useState<ProductDto>()
-
   // const { rating, name, imageUrl, price, id, new } = product
 
-  console.log(params)
+  console.log(id)
+
+  const param = id ? id : ''
 
   useEffect(() => {
-    getProductById('3c8a9a55-08b1-4e91-89b9-840f76b27df6')
+    getProductById(param)
       .then((p) => setProduct(p))
       .catch((err) => console.log(err))
-    // .finally(() => setLoading(false))
   }, [])
 
   return (
