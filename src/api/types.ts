@@ -18,3 +18,10 @@ export type ProductDto = {
   new: boolean
   tags: string[]
 }
+
+export type TagDto = {
+  name: string
+  id: string
+  namePlural: string
+  hidden?: boolean
+}
