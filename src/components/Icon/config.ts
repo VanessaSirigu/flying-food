@@ -25,7 +25,9 @@ import {
   faTruck,
   faMedal,
   faGift,
-  faUserAlt
+  faUserAlt,
+  faMinus,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons'
 
 export const iconMap = {
@@ -56,5 +58,7 @@ export const iconMap = {
   delivery: faTruck,
   reward: faMedal,
   bonus: faGift,
-  heart: faHeart
+  heart: faHeart,
+  minus: faMinus,
+  plus: faPlus
 }
