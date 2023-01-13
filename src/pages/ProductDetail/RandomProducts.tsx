@@ -5,20 +5,18 @@ import { Grid } from '../../components/Grid'
 import { ProductCard } from '../../components/ProductCard'
 
 type Props = {
-  id?: string
+  excludedId?: string
 }
 
-export const RandomProducts = ({ id = '' }: Props) => {
+export const RandomProducts = ({ excludedId }: Props) => {
   const [randomProduct, setRandomProduct] = useState<ProductDto[]>()
 
   useEffect(() => {
-    getRandomProducts(id)
-      .then((products) => setRandomProduct(products))
-      .catch((err) => console.log(err))
+    getRandomProducts(excludedId).then(setRandomProduct).catch(console.error)
   }, [])
 
   return (
-    <Grid column={2}>
+    <Grid cols={2} gap={32}>
       {randomProduct &&
         randomProduct.map((r) => (
           <ProductCard
@@ -30,6 +28,7 @@ export const RandomProducts = ({ id = '' }: Props) => {
             rating={r.rating}
             price={`${r.price.type} ${r.price.value}`}
             isAvailable={r.available}
+            isNew={r.new}
           />
         ))}
     </Grid>

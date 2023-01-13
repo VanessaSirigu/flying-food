@@ -9,16 +9,29 @@ export const StyledProduct = styled.div`
   padding: 0px 24px;
   max-width: 700px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 
   &::before {
     content: '';
     height: calc(100% - 20px);
-    width: 80%;
+    width: 100%;
     position: absolute;
     bottom: 10px;
     left: -10px;
     background-color: ${({ theme }) => theme.colors.primary};
+    border-radius: ${({ theme }) => theme.radii.at(3)}px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: #edeff3;
     border-radius: ${({ theme }) => theme.radii.at(3)}px;
     z-index: -1;
   }
@@ -42,4 +55,11 @@ export const StyledTag = styled(Tag)`
   top: -10px;
   left: 60px;
   z-index: 10;
+`
+export const StyledProdTag = styled(Tag)`
+  height: min-content;
+
+  > * {
+    text-transform: lowercase;
+  }
 `

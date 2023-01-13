@@ -13,21 +13,17 @@ import { RandomProducts } from './RandomProducts'
 import { StyledPaper } from './styled'
 
 type Props = {
-  tags: TagDto[]
+  tags?: TagDto[]
 }
 
 export const ProductDetail = ({ tags }: Props) => {
   const { id } = useParams()
   const [product, setProduct] = useState<ProductDto>()
   const [quantity, setQuantity] = useState(0)
-  // const { rating, name, imageUrl, price, id, new } = product
-  const param = id ? id : ''
 
   useEffect(() => {
-    getProductById(param)
-      .then((product) => {
-        setProduct(product)
-      })
+    getProductById(id!)
+      .then(setProduct)
       .catch((err) => console.log(err))
   }, [])
 
@@ -37,46 +33,48 @@ export const ProductDetail = ({ tags }: Props) => {
   }
 
   return (
-    <Stack>
-      {!product && <Loader />}
-      {product && tags && (
-        <StyledPaper>
-          <SingleProduct
-            src={product.imageUrl}
-            alt={product.name}
-            name={product.name}
-            rating={product.rating}
-            price={`${product.price.type} ${product.price.value}`}
-            isNew={product.new}
-            tags={tags.filter(({ id }) => product.tags.includes(id))}
-          />
-          <Rating value={product.rating} />
-          <Text>{product.description}</Text>
-          <Stack centered>
-            <Button
-              iconBgColor="primary"
-              iconColor="backgroundDark"
-              icon="shopBag"
-              bgColor="backgroundDark"
-              color="textInverse"
-            >
-              Add to cart
-            </Button>
-            <QuantitySelector
-              onClick={handleQuantity}
-              quantity={quantity}
-              min={0}
-              max={product.stock}
+    <StyledPaper>
+      <Stack>
+        {!product && <Loader />}
+        {product && tags && (
+          <Stack direction="vertical">
+            <SingleProduct
+              src={product.imageUrl}
+              alt={product.name}
+              name={product.name}
+              rating={product.rating}
+              price={`${product.price.type} ${product.price.value}`}
+              isNew={product.new}
+              tags={tags.filter(({ id }) => product.tags.includes(id))}
             />
-            {quantity >= product.stock && (
-              <Text uppercase color="danger">
-                max quantity
-              </Text>
-            )}
+            <Rating value={product.rating} />
+            <Text>{product.description}</Text>
+            <Stack centered>
+              <Button
+                iconBgColor="primary"
+                iconColor="backgroundDark"
+                icon="shopBag"
+                bgColor="backgroundDark"
+                color="textInverse"
+              >
+                Add to cart
+              </Button>
+              <QuantitySelector
+                onClick={handleQuantity}
+                quantity={quantity}
+                min={0}
+                max={product.stock}
+              />
+              {quantity >= product.stock && (
+                <Text uppercase color="danger">
+                  max quantity
+                </Text>
+              )}
+            </Stack>
           </Stack>
-        </StyledPaper>
-      )}
-      <RandomProducts id={product ? product.id : ''} />
-    </Stack>
+        )}
+        <RandomProducts excludedId={id} />
+      </Stack>
+    </StyledPaper>
   )
 }

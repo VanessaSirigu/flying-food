@@ -7,8 +7,8 @@ import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
 import { ProductsHeader } from './ProductsHeader'
 
-type Props = {
-  tags: TagDto[]
+export type Props = {
+  tags?: TagDto[]
 }
 
 export const Products = ({ tags }: Props) => {
@@ -16,35 +16,28 @@ export const Products = ({ tags }: Props) => {
   const [selected, setSelected] = useState('')
 
   useEffect(() => {
-    getProducts()
-      .then((products) => setProducts(products))
-      .catch((err) => console.log(err))
+    getProducts().then(setProducts).catch(console.error)
   }, [])
-
-  const filterTags = tags.filter((tag) => !tag.hidden)
 
   const handleFilterClick = (tag: FilterItem) => {
     setSelected(tag.id)
   }
 
-  // const filterProducts = selected
-  //   ? products?.filter(({ tags }) => tags.includes(selected))
-  //   : products
+  const filteredTags = tags ? tags.filter((tag) => !tag.hidden) : []
+  const selectedTag = selected || filteredTags.at(0)?.id || ''
+  const filterProducts = products?.filter(({ tags }) => tags.includes(selectedTag))
 
-  const filterProducts = products?.filter(({ tags }) =>
-    tags.includes(selected ? selected : filterTags[0].id)
-  )
+  if (!(products && tags)) return <Loader />
 
   return (
     <div>
       <ProductsHeader
-        selected={selected ? selected : filterTags[0].id}
-        items={tags.filter((tag) => !tag.hidden).map(({ name, id }) => ({ name, id }))}
+        selected={selectedTag}
+        items={filteredTags.map(({ name, id }) => ({ name, id }))}
         onFilterSelect={handleFilterClick}
       />
-      {!products && <Loader />}
-      {filterProducts && (
-        <Grid column={3}>
+      {selectedTag && filterProducts && (
+        <Grid cols={4} gap={32}>
           {filterProducts.map((p) => (
             <ProductCard
               linkUrl={p.id}
@@ -54,8 +47,8 @@ export const Products = ({ tags }: Props) => {
               name={p.name}
               rating={p.rating}
               price={`${p.price.type} ${p.price.value}`}
-              isAvailable={p.available}
               isNew={p.new}
+              isAvailable={p.available}
             />
           ))}
         </Grid>

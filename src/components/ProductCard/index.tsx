@@ -24,9 +24,9 @@ export const ProductCard = ({
   rating,
   price,
   id,
+  linkUrl,
   isNew,
   isAvailable,
-  linkUrl,
   size = 'md',
   onClick
 }: Props) => {

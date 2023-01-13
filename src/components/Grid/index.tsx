@@ -3,15 +3,13 @@ import { StyledGrid } from './styled'
 
 type Props = {
   children: ReactNode
-  column: number
+  cols: number
   gap?: number
-  inline?: number
-  block?: number
 }
 
-export const Grid = ({ children, column, gap = 20, inline = 24, block = 24 }: Props) => {
+export const Grid = ({ children, cols, gap = 12 }: Props) => {
   return (
-    <StyledGrid column={column} gap={gap} inline={inline} block={block}>
+    <StyledGrid gap={gap} cols={cols}>
       {children}
     </StyledGrid>
   )

@@ -1,5 +1,5 @@
 import { Global, ThemeProvider } from '@emotion/react'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { getTags } from './api'
 import { TagDto } from './api/types'
@@ -13,7 +13,7 @@ import { globalStyle } from './style/global'
 import { theme } from './style/theme'
 
 function App() {
-  const [tags, setTags] = useState<TagDto[]>([])
+  const [tags, setTags] = useState<TagDto[]>()
 
   useEffect(() => {
     getTags()
