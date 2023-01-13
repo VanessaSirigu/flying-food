@@ -32,7 +32,7 @@ export const Products = ({ tags }: Props) => {
   const filterTags = tags.filter((tag) => !tag.hidden)
 
   const filterProducts = products?.filter(({ tags }) =>
-    selected ? tags.includes(selected) : tags.includes(filterTags[0].id)
+    tags.includes(selected ? selected : filterTags[0].id)
   )
 
   return (
