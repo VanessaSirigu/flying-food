@@ -35,7 +35,7 @@ export const ProductDetail = () => {
   }
 
   return (
-    <div>
+    <Stack>
       {!product && <Loader />}
       {product && tags && (
         <StyledPaper>
@@ -72,9 +72,9 @@ export const ProductDetail = () => {
               </Text>
             )}
           </Stack>
-          <RandomProducts />
         </StyledPaper>
       )}
-    </div>
+      <RandomProducts />
+    </Stack>
   )
 }

@@ -25,9 +25,9 @@ export const SingleProduct = ({ src, alt, name, price, tags, isNew }: Props) => 
       <Image src={src} alt={alt} />
       <Stack direction="horizontal" gap={160}>
         <SectionTitle main={name} />
-        <Stack>
-          {tags &&
-            tags.map((t) => (
+        {tags && (
+          <Stack>
+            {tags.map((t) => (
               <Tag
                 title={t.name}
                 bgColor="background"
@@ -36,7 +36,8 @@ export const SingleProduct = ({ src, alt, name, price, tags, isNew }: Props) => 
                 key={t.id}
               />
             ))}
-        </Stack>
+          </Stack>
+        )}
       </Stack>
     </StyledProduct>
   )

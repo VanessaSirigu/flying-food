@@ -3,7 +3,6 @@ import { IconButton } from '../../components/Button'
 import { Paper } from '../../components/Paper'
 
 export const StyledPaper = styled(Paper)`
-  height: 80vh;
   width: 100%;
   padding: 32px;
   display: flex;
