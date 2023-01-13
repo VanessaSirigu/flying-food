@@ -5,6 +5,7 @@ import { FilterItem } from '../../components/Filter'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
+import { first } from '../../Utils'
 import { ProductsHeader } from './ProductsHeader'
 
 export type Props = {
@@ -24,7 +25,7 @@ export const Products = ({ tags }: Props) => {
   }
 
   const filteredTags = tags ? tags.filter((tag) => !tag.hidden) : []
-  const selectedTag = selected || filteredTags.at(0)?.id || ''
+  const selectedTag = selected || first(filteredTags)?.id || ''
   const filterProducts = products?.filter(({ tags }) => tags.includes(selectedTag))
 
   if (!(products && tags)) return <Loader />
