@@ -10,7 +10,7 @@ import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
 import { RandomProducts } from './RandomProducts'
-import { StyledPaper } from './styled'
+import { StyledPaper, StyledVStack } from './styled'
 
 type Props = {
   tags?: TagDto[]
@@ -34,10 +34,10 @@ export const ProductDetail = ({ tags }: Props) => {
 
   return (
     <StyledPaper>
-      <Stack>
+      <Stack gap={64}>
         {!product && <Loader />}
         {product && tags && (
-          <Stack direction="vertical">
+          <StyledVStack direction="vertical" gap={32}>
             <SingleProduct
               src={product.imageUrl}
               alt={product.name}
@@ -71,7 +71,7 @@ export const ProductDetail = ({ tags }: Props) => {
                 </Text>
               )}
             </Stack>
-          </Stack>
+          </StyledVStack>
         )}
         <RandomProducts excludedId={id} />
       </Stack>

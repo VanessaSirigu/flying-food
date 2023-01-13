@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { IconButton } from '../../components/Button'
 import { Paper } from '../../components/Paper'
+import { Stack } from '../../components/Stack'
 
 export const StyledPaper = styled(Paper)`
   padding: 32px;
@@ -16,4 +17,7 @@ export const OutlinedIcon = styled(IconButton)`
   border-radius: 1px solid black;
   background-color: white;
   outline: 1px solid black;
+`
+export const StyledVStack = styled(Stack)`
+  max-width: 700px;
 `
