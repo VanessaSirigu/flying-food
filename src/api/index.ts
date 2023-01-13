@@ -7,4 +7,5 @@ export const getTags = () => apiClient.get<TagDto[]>('tags')
 
 export const getProductById = (id: string) => apiClient.get<ProductDto>(`products/${id}`)
 
-export const getRandomProducts = () => apiClient.get<ProductDto[]>('products/random')
+export const getRandomProducts = (id: string) =>
+  apiClient.get<ProductDto[]>('products/random')

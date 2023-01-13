@@ -9,11 +9,12 @@ type Props = {
   id: string
   imgSrc: string
   name: string
-  isAvailable?: boolean
+  isAvailable: boolean
   rating: number
   price: string
   size?: Size
   linkUrl?: string
+  isNew?: boolean
   onClick?: () => void
 }
 
@@ -23,6 +24,8 @@ export const ProductCard = ({
   rating,
   price,
   id,
+  isNew,
+  isAvailable,
   linkUrl,
   size = 'md',
   onClick
@@ -31,12 +34,12 @@ export const ProductCard = ({
 
   const cardContent = (
     <>
-      <ProductThumb size={size} src={imgSrc} isNew alt={name} />
+      <ProductThumb size={size} src={imgSrc} isNew={isNew} alt={name} />
       <ProductDescription
         productName={name}
         stars={rating}
         price={price}
-        isAvailable
+        isAvailable={isAvailable}
         size={size}
       />
     </>

@@ -9,10 +9,12 @@ type Props = {
   isNew?: boolean
 }
 
-export const ProductThumb = ({ src, alt, size = 'md' }: Props) => {
+export const ProductThumb = ({ src, alt, isNew, size = 'md' }: Props) => {
   return (
     <StyledProductThumb size={size}>
-      <StyledTag title="NEW" bgColor="secondary" textColor="textInverse" size="sm" />
+      {isNew && (
+        <StyledTag title="NEW" bgColor="secondary" textColor="textInverse" size="sm" />
+      )}
       <Image src={src} alt={alt} />
     </StyledProductThumb>
   )
