@@ -35,46 +35,48 @@ export const ProductDetail = () => {
   }
 
   return (
-    <Stack>
-      {!product && <Loader />}
-      {product && tags && (
-        <StyledPaper>
-          <SingleProduct
-            src={product.imageUrl}
-            alt={product.name}
-            name={product.name}
-            rating={product.rating}
-            price={`${product.price.type} ${product.price.value}`}
-            isNew={product.new}
-            tags={tags.filter(({ id }) => product.tags.includes(id))}
-          />
-          <Rating value={product.rating} />
-          <Text>{product.description}</Text>
-          <Stack centered>
-            <Button
-              iconBgColor="primary"
-              iconColor="backgroundDark"
-              icon="shopBag"
-              bgColor="backgroundDark"
-              color="textInverse"
-            >
-              Add to cart
-            </Button>
-            <QuantitySelector
-              onClick={handleQuantity}
-              quantity={quantity}
-              min={0}
-              max={product.stock}
+    <StyledPaper>
+      <Stack>
+        {!product && <Loader />}
+        {product && tags && (
+          <Stack direction="vertical">
+            <SingleProduct
+              src={product.imageUrl}
+              alt={product.name}
+              name={product.name}
+              rating={product.rating}
+              price={`${product.price.type} ${product.price.value}`}
+              isNew={product.new}
+              tags={tags.filter(({ id }) => product.tags.includes(id))}
             />
-            {quantity >= product.stock && (
-              <Text uppercase color="danger">
-                max quantity
-              </Text>
-            )}
+            <Rating value={product.rating} />
+            <Text>{product.description}</Text>
+            <Stack centered>
+              <Button
+                iconBgColor="primary"
+                iconColor="backgroundDark"
+                icon="shopBag"
+                bgColor="backgroundDark"
+                color="textInverse"
+              >
+                Add to cart
+              </Button>
+              <QuantitySelector
+                onClick={handleQuantity}
+                quantity={quantity}
+                min={0}
+                max={product.stock}
+              />
+              {quantity >= product.stock && (
+                <Text uppercase color="danger">
+                  max quantity
+                </Text>
+              )}
+            </Stack>
           </Stack>
-        </StyledPaper>
-      )}
-      <RandomProducts />
-    </Stack>
+        )}
+        <RandomProducts />
+      </Stack>
+    </StyledPaper>
   )
 }

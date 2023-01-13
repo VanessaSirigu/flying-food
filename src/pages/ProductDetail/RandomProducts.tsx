@@ -14,7 +14,7 @@ export const RandomProducts = () => {
   }, [])
 
   return (
-    <Grid>
+    <Grid cols={2} gap={32}>
       {randomProduct &&
         randomProduct.map((r) => (
           <ProductCard
@@ -25,6 +25,8 @@ export const RandomProducts = () => {
             name={r.name}
             rating={r.rating}
             price={`${r.price.type} ${r.price.value}`}
+            isAvailable={r.available}
+            isNew={r.new}
           />
         ))}
     </Grid>

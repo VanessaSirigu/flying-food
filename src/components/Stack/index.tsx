@@ -12,6 +12,7 @@ export const Stack = ({
   centered,
   style,
   className,
+  between,
   direction = 'horizontal',
   gap = 20
 }: Props) => {
@@ -22,6 +23,7 @@ export const Stack = ({
       direction={direction}
       gap={gap}
       centered={centered}
+      between={between}
     >
       {children}
     </StyledStack>

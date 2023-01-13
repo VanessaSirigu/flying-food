@@ -3,20 +3,14 @@ import { IconButton } from '../../components/Button'
 import { Paper } from '../../components/Paper'
 
 export const StyledPaper = styled(Paper)`
-  width: 100%;
   padding: 32px;
+  max-width: ${({ theme }) => theme.containers.content}px;
+  width: 1260px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  justify-content: center;
-  align-items: flex-start;
-
-  > p {
-    max-width: 700px;
-  }
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 `
-
-export const StyledRandomProduct = styled.div``
 
 export const OutlinedIcon = styled(IconButton)`
   border-radius: 1px solid black;

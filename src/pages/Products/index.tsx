@@ -7,17 +7,17 @@ import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
 import { ProductsHeader } from './ProductsHeader'
 
-export const Products = () => {
+export type Props = {
+  tags: TagDto[]
+}
+
+export const Products = ({ tags }: Props) => {
   const [products, setProducts] = useState<ProductDto[]>()
-  const [tags, setTags] = useState<TagDto[]>([])
   const [selected, setSelected] = useState('')
 
   useEffect(() => {
-    Promise.all([getTags(), getProducts()])
-      .then(([tags, products]) => {
-        setTags(tags)
-        setProducts(products)
-      })
+    getProducts()
+      .then((products) => setProducts(products))
       .catch((err) => console.log(err))
   }, [])
 
@@ -38,7 +38,7 @@ export const Products = () => {
       />
       {!products && <Loader />}
       {filterProducts && (
-        <Grid>
+        <Grid cols={4} gap={32}>
           {filterProducts.map((p) => (
             <ProductCard
               linkUrl={p.id}
@@ -48,6 +48,8 @@ export const Products = () => {
               name={p.name}
               rating={p.rating}
               price={`${p.price.type} ${p.price.value}`}
+              isNew={p.new}
+              isAvailable={p.available}
             />
           ))}
         </Grid>
