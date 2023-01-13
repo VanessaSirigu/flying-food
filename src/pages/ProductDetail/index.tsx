@@ -1,31 +1,30 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProductById, getRandomProducts } from '../../api'
-import { ProductDto } from '../../api/types'
+import { getProductById, getTags } from '../../api'
+import { ProductDto, TagDto } from '../../api/types'
 import { Button } from '../../components/Button'
-import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
-import { ProductCard } from '../../components/ProductCard'
 import { QuantitySelector } from '../../components/QuantitySelector'
 import { Rating } from '../../components/Rating'
 import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
+import { RandomProducts } from './RandomProducts'
 import { StyledPaper } from './styled'
 
 export const ProductDetail = () => {
   const { id } = useParams()
   const [product, setProduct] = useState<ProductDto>()
-  const [randomProduct, setRandomProduct] = useState<ProductDto[]>()
   const [quantity, setQuantity] = useState(0)
+  const [tags, setTags] = useState<TagDto[]>()
   // const { rating, name, imageUrl, price, id, new } = product
   const param = id ? id : ''
 
   useEffect(() => {
-    Promise.all([getProductById(param) /* getRandomProducts('', 4)*/])
-      .then(([product /* , randomProducts*/]) => {
+    Promise.all([getProductById(param), getTags()])
+      .then(([product, tags]) => {
         setProduct(product)
-        // setRandomProduct(randomProducts)
+        setTags(tags)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -38,7 +37,7 @@ export const ProductDetail = () => {
   return (
     <div>
       {!product && <Loader />}
-      {product && (
+      {product && tags && (
         <StyledPaper>
           <SingleProduct
             src={product.imageUrl}
@@ -46,6 +45,8 @@ export const ProductDetail = () => {
             name={product.name}
             rating={product.rating}
             price={`${product.price.type} ${product.price.value}`}
+            isNew={product.new}
+            tags={tags.filter(({ id }) => product.tags.includes(id))}
           />
           <Rating value={product.rating} />
           <Text>{product.description}</Text>
@@ -59,21 +60,19 @@ export const ProductDetail = () => {
             >
               Add to cart
             </Button>
-            <QuantitySelector onClick={handleQuantity} quantity={quantity} />
+            <QuantitySelector
+              onClick={handleQuantity}
+              quantity={quantity}
+              min={0}
+              max={product.stock}
+            />
+            {quantity >= product.stock && (
+              <Text uppercase color="danger">
+                max quantity
+              </Text>
+            )}
           </Stack>
-          <Grid>
-            {randomProduct &&
-              randomProduct.map((r) => (
-                <ProductCard
-                  key={r.id}
-                  id={r.id}
-                  imgSrc={r.imageUrl}
-                  name={r.name}
-                  rating={r.rating}
-                  price={`${r.price.type} ${r.price.value}`}
-                />
-              ))}
-          </Grid>
+          <RandomProducts />
         </StyledPaper>
       )}
     </div>

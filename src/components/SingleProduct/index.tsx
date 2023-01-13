@@ -1,7 +1,8 @@
-import { Button } from '../Button'
+import { TagDto } from '../../api/types'
 import { Image } from '../Image'
 import { SectionTitle } from '../SectionTitle'
 import { Stack } from '../Stack'
+import { Tag } from '../Tag'
 import { StyledTag } from './styled'
 import { StyledProduct } from './styled'
 
@@ -11,25 +12,30 @@ type Props = {
   name: string
   rating: number
   price: string
+  isNew?: boolean
+  tags?: TagDto[]
 }
 
-export const SingleProduct = ({ src, alt, name, price }: Props) => {
+export const SingleProduct = ({ src, alt, name, price, tags, isNew }: Props) => {
   return (
     <StyledProduct>
-      <StyledTag title="NEW" bgColor="secondary" textColor="textInverse" size="sm" />
+      {isNew && (
+        <StyledTag title="NEW" bgColor="secondary" textColor="textInverse" size="sm" />
+      )}
       <Image src={src} alt={alt} />
       <Stack direction="horizontal" gap={160}>
         <SectionTitle main={name} />
         <Stack>
-          <Button bgColor="background" color="text">
-            burger
-          </Button>
-          <Button bgColor="background" color="text">
-            food
-          </Button>
-          <Button bgColor="background" color="text">
-            however
-          </Button>
+          {tags &&
+            tags.map((t) => (
+              <Tag
+                title={t.name}
+                bgColor="background"
+                textColor="text"
+                size="md"
+                key={t.id}
+              />
+            ))}
         </Stack>
       </Stack>
     </StyledProduct>
