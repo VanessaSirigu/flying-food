@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getProducts, getTags } from '../../api'
+import { getProducts } from '../../api'
 import { ProductDto, TagDto } from '../../api/types'
 import { FilterItem } from '../../components/Filter'
 import { Grid } from '../../components/Grid'
@@ -22,7 +22,7 @@ export const Products = ({ tags }: Props) => {
   }, [])
 
   const handleFilterClick = (tag: FilterItem) => {
-    setSelected(tag.id === selected ? '' : tag.id)
+    setSelected(tag.id)
   }
 
   const filterProducts = selected

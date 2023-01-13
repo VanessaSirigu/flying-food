@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProductById, getTags } from '../../api'
+import { getProductById } from '../../api'
 import { ProductDto, TagDto } from '../../api/types'
 import { Button } from '../../components/Button'
 import { Loader } from '../../components/Loader'
@@ -12,19 +12,20 @@ import { Text } from '../../components/Text'
 import { RandomProducts } from './RandomProducts'
 import { StyledPaper } from './styled'
 
-export const ProductDetail = () => {
+type Props = {
+  tags: TagDto[]
+}
+
+export const ProductDetail = ({ tags }: Props) => {
   const { id } = useParams()
   const [product, setProduct] = useState<ProductDto>()
   const [quantity, setQuantity] = useState(0)
-  const [tags, setTags] = useState<TagDto[]>()
-  // const { rating, name, imageUrl, price, id, new } = product
   const param = id ? id : ''
 
   useEffect(() => {
-    Promise.all([getProductById(param), getTags()])
-      .then(([product, tags]) => {
+    getProductById(param)
+      .then((product) => {
         setProduct(product)
-        setTags(tags)
       })
       .catch((err) => console.log(err))
   }, [])

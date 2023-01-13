@@ -6,7 +6,6 @@ export const StyledGrid = styled.div<{
 }>`
   display: grid;
   max-width: ${({ theme }) => theme.containers.content}px;
-  padding-left: 32px;
   gap: ${({ gap }) => gap && gap}px;
   grid-template-columns: ${({ cols }) => cols && `repeat(${cols}, 1fr)}`};
 `

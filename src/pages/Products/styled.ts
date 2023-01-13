@@ -6,6 +6,7 @@ export const StyledDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: ${({ theme }) => theme.containers.content}px;
+  margin-bottom: 32px;
 `
 
 export const StyledButton = styled(Button)`
