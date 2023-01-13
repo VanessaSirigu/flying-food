@@ -5,10 +5,10 @@ import { Grid } from '../../components/Grid'
 import { ProductCard } from '../../components/ProductCard'
 
 type Props = {
-  id: string
+  id?: string
 }
 
-export const RandomProducts = ({ id }: Props) => {
+export const RandomProducts = ({ id = '' }: Props) => {
   const [randomProduct, setRandomProduct] = useState<ProductDto[]>()
 
   useEffect(() => {

@@ -21,6 +21,8 @@ export const Products = ({ tags }: Props) => {
       .catch((err) => console.log(err))
   }, [])
 
+  const filterTags = tags.filter((tag) => !tag.hidden)
+
   const handleFilterClick = (tag: FilterItem) => {
     setSelected(tag.id)
   }
@@ -28,8 +30,6 @@ export const Products = ({ tags }: Props) => {
   // const filterProducts = selected
   //   ? products?.filter(({ tags }) => tags.includes(selected))
   //   : products
-
-  const filterTags = tags.filter((tag) => !tag.hidden)
 
   const filterProducts = products?.filter(({ tags }) =>
     tags.includes(selected ? selected : filterTags[0].id)
