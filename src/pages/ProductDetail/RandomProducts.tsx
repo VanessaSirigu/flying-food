@@ -4,11 +4,15 @@ import { ProductDto } from '../../api/types'
 import { Grid } from '../../components/Grid'
 import { ProductCard } from '../../components/ProductCard'
 
-export const RandomProducts = () => {
+type Props = {
+  id: string
+}
+
+export const RandomProducts = ({ id }: Props) => {
   const [randomProduct, setRandomProduct] = useState<ProductDto[]>()
 
   useEffect(() => {
-    getRandomProducts()
+    getRandomProducts(id)
       .then((products) => setRandomProduct(products))
       .catch((err) => console.log(err))
   }, [])

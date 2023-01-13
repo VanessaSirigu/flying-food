@@ -14,7 +14,7 @@ type Props = {
   price: string
   size?: Size
   linkUrl?: string
-  isNew: boolean
+  isNew?: boolean
   onClick?: () => void
 }
 
@@ -24,6 +24,8 @@ export const ProductCard = ({
   rating,
   price,
   id,
+  isNew,
+  isAvailable,
   linkUrl,
   isNew,
   isAvailable,

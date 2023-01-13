@@ -7,7 +7,7 @@ import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
 import { ProductsHeader } from './ProductsHeader'
 
-export type Props = {
+type Props = {
   tags: TagDto[]
 }
 
@@ -25,14 +25,16 @@ export const Products = ({ tags }: Props) => {
     setSelected(tag.id)
   }
 
-  const filterProducts = selected
-    ? products?.filter(({ tags }) => tags.includes(selected))
-    : products
+  const filterTags = tags.filter((tag) => !tag.hidden)
+
+  const filterProducts = products?.filter(({ tags }) =>
+    tags.includes(selected ? selected : filterTags[0].id)
+  )
 
   return (
     <div>
       <ProductsHeader
-        selected={selected}
+        selected={selected ? selected : filterTags[0].id}
         items={tags.filter((tag) => !tag.hidden).map(({ name, id }) => ({ name, id }))}
         onFilterSelect={handleFilterClick}
       />
@@ -48,8 +50,8 @@ export const Products = ({ tags }: Props) => {
               name={p.name}
               rating={p.rating}
               price={`${p.price.type} ${p.price.value}`}
-              isNew={p.new}
               isAvailable={p.available}
+              isNew={p.new}
             />
           ))}
         </Grid>
