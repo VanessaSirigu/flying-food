@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../api'
-import { ProductDto, TagDto } from '../../api/types'
+import { TagDto } from '../../api/types'
 import { Button } from '../../components/Button'
 import { Loader } from '../../components/Loader'
 import { QuantitySelector } from '../../components/QuantitySelector'
@@ -21,7 +21,8 @@ export const ProductDetail = ({ tags }: Props) => {
   const { id } = useParams()
   const [quantity, setQuantity] = useState(0)
 
-  const { resource: product, loading } = useFetch(() => getProductById(id!))
+  const getProduct = useCallback(() => getProductById(id!), [id])
+  const { resource: product, loading } = useFetch(getProduct)
 
   const handleQuantity = (q: number) => {
     console.log(quantity)

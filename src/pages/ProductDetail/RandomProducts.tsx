@@ -1,37 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { getRandomProducts } from '../../api'
-import { ProductDto } from '../../api/types'
 import { Grid } from '../../components/Grid'
+import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
+import { useFetch } from '../../hooks/useFetch'
 
 type Props = {
   excludedId?: string
 }
 
 export const RandomProducts = ({ excludedId }: Props) => {
-  const [randomProduct, setRandomProduct] = useState<ProductDto[]>()
+  const getProducts = useCallback(() => getRandomProducts(excludedId), [excludedId])
+  const { resource, loading } = useFetch(getProducts)
 
-  useEffect(() => {
-    getRandomProducts(excludedId).then(setRandomProduct).catch(console.error)
-  }, [])
+  if (loading) return <Loader />
 
   return (
     <Grid cols={2} gap={32}>
-      {randomProduct &&
-        randomProduct.map((r) => (
-          <ProductCard
-            linkUrl={`/products/${r.id}`}
-            size="sm"
-            key={r.id}
-            id={r.id}
-            imgSrc={r.imageUrl}
-            name={r.name}
-            rating={r.rating}
-            price={`${r.price.type} ${r.price.value}`}
-            isAvailable={r.available}
-            isNew={r.new}
-          />
-        ))}
+      {resource?.map((r) => (
+        <ProductCard
+          linkUrl={`/products/${r.id}`}
+          size="sm"
+          key={r.id}
+          id={r.id}
+          imgSrc={r.imageUrl}
+          name={r.name}
+          rating={r.rating}
+          price={`${r.price.type} ${r.price.value}`}
+          isAvailable={r.available}
+          isNew={r.new}
+        />
+      ))}
     </Grid>
   )
 }

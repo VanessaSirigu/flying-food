@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { getProducts } from '../../api'
-import { ProductDto, TagDto } from '../../api/types'
+import { TagDto } from '../../api/types'
 import { FilterItem } from '../../components/Filter'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'

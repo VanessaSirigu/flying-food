@@ -9,7 +9,7 @@ export const useFetch = <T>(func: () => Promise<T>) => {
       .then(setResource)
       .catch(console.error)
       .finally(() => setLoading(false))
-  }, [])
+  }, [func])
 
   return { loading, resource }
 }
