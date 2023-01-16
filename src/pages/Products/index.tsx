@@ -5,6 +5,7 @@ import { FilterItem } from '../../components/Filter'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
+import { useFetch } from '../../hooks/useFetch'
 import { first } from '../../Utils'
 import { ProductsHeader } from './ProductsHeader'
 
@@ -13,12 +14,8 @@ export type Props = {
 }
 
 export const Products = ({ tags }: Props) => {
-  const [products, setProducts] = useState<ProductDto[]>()
   const [selected, setSelected] = useState('')
-
-  useEffect(() => {
-    getProducts().then(setProducts).catch(console.error)
-  }, [])
+  const { resource: products } = useFetch(getProducts)
 
   const handleFilterClick = (tag: FilterItem) => {
     setSelected(tag.id)
@@ -41,7 +38,7 @@ export const Products = ({ tags }: Props) => {
         <Grid cols={4} gap={32}>
           {filterProducts.map((p) => (
             <ProductCard
-              linkUrl={p.id}
+              linkUrl={`/products/${p.id}`}
               key={p.id}
               id={p.id}
               imgSrc={p.imageUrl}

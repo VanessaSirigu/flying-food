@@ -9,6 +9,7 @@ import { Rating } from '../../components/Rating'
 import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
+import { useFetch } from '../../hooks/useFetch'
 import { RandomProducts } from './RandomProducts'
 import { StyledPaper, StyledVStack } from './styled'
 
@@ -18,14 +19,9 @@ type Props = {
 
 export const ProductDetail = ({ tags }: Props) => {
   const { id } = useParams()
-  const [product, setProduct] = useState<ProductDto>()
   const [quantity, setQuantity] = useState(0)
 
-  useEffect(() => {
-    getProductById(id!)
-      .then(setProduct)
-      .catch((err) => console.log(err))
-  }, [])
+  const { resource: product, loading } = useFetch(() => getProductById(id!))
 
   const handleQuantity = (q: number) => {
     console.log(quantity)
@@ -35,8 +31,8 @@ export const ProductDetail = ({ tags }: Props) => {
   return (
     <StyledPaper>
       <Stack gap={64}>
-        {!product && <Loader />}
-        {product && tags && (
+        {loading && <Loader />}
+        {product && (
           <StyledVStack direction="vertical" gap={32}>
             <SingleProduct
               src={product.imageUrl}
@@ -45,7 +41,7 @@ export const ProductDetail = ({ tags }: Props) => {
               rating={product.rating}
               price={`${product.price.type} ${product.price.value}`}
               isNew={product.new}
-              tags={tags.filter(({ id }) => product.tags.includes(id))}
+              tags={tags?.filter(({ id }) => product.tags.includes(id))}
             />
             <Rating value={product.rating} />
             <Text>{product.description}</Text>

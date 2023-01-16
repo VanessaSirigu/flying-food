@@ -1,9 +1,8 @@
 import { Global, ThemeProvider } from '@emotion/react'
-import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { getTags } from './api'
-import { TagDto } from './api/types'
 import { Layout } from './components/Layout'
+import { useFetch } from './hooks/useFetch'
 import { Cart } from './pages/Cart'
 import { Homepage } from './pages/Homepage'
 import { NotFound } from './pages/NotFound'
@@ -13,13 +12,7 @@ import { globalStyle } from './style/global'
 import { theme } from './style/theme'
 
 function App() {
-  const [tags, setTags] = useState<TagDto[]>()
-
-  useEffect(() => {
-    getTags()
-      .then((tags) => setTags(tags))
-      .catch((err) => console.log(err))
-  }, [])
+  const { resource: tags } = useFetch(getTags)
 
   return (
     <ThemeProvider theme={theme}>

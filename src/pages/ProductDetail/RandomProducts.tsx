@@ -20,6 +20,7 @@ export const RandomProducts = ({ excludedId }: Props) => {
       {randomProduct &&
         randomProduct.map((r) => (
           <ProductCard
+            linkUrl={`/products/${r.id}`}
             size="sm"
             key={r.id}
             id={r.id}
