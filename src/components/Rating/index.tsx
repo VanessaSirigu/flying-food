@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { ThemeColor } from '../../style/theme'
 import { Icon } from '../Icon'
 import { StyledRating } from './styled'
@@ -8,7 +9,7 @@ type Props = {
   stars?: number
 }
 
-export const Rating = ({ value, color = 'primary', stars = 5 }: Props) => {
+const RatingCmp = ({ value, color = 'primary', stars = 5 }: Props) => {
   const getIcon = (index: number) => {
     if (index + 1 <= value) return 'fullStar'
     if (index + 0.5 <= value) return 'halfStar'
@@ -23,3 +24,5 @@ export const Rating = ({ value, color = 'primary', stars = 5 }: Props) => {
     </StyledRating>
   )
 }
+
+export const Rating = memo(RatingCmp)

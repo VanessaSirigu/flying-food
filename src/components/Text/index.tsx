@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { memo, ReactNode } from 'react'
 import { StyledText, StyledTextProps } from './styled'
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   className?: string
 } & Partial<StyledTextProps>
 
-export const Text = ({
+const TextCmp = ({
   children,
   bold,
   size,
@@ -35,3 +35,5 @@ export const Text = ({
     </StyledText>
   )
 }
+
+export const Text = memo(TextCmp)

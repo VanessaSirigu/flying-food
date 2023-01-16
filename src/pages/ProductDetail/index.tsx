@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../api'
 import { TagDto } from '../../api/types'
@@ -21,13 +21,24 @@ export const ProductDetail = ({ tags }: Props) => {
   const { id } = useParams()
   const [quantity, setQuantity] = useState(0)
 
-  const getProduct = useCallback(() => getProductById(id!), [id])
+  const getProduct = useCallback(() => {
+    setQuantity(0)
+    return getProductById(id!)
+  }, [id])
+
   const { resource: product, loading } = useFetch(getProduct)
 
-  const handleQuantity = (q: number) => {
-    console.log(quantity)
-    setQuantity(quantity + q)
-  }
+  const productTags = useMemo(
+    () =>
+      tags && product?.tags
+        ? tags.filter(({ id }) => product.tags.includes(id))
+        : undefined,
+    [product?.tags, tags]
+  )
+
+  const handleQuantity = useCallback((q: number) => {
+    setQuantity((currentQ) => currentQ + q)
+  }, [])
 
   return (
     <StyledPaper>
@@ -42,7 +53,7 @@ export const ProductDetail = ({ tags }: Props) => {
               rating={product.rating}
               price={`${product.price.type} ${product.price.value}`}
               isNew={product.new}
-              tags={tags?.filter(({ id }) => product.tags.includes(id))}
+              tags={productTags}
             />
             <Rating value={product.rating} />
             <Text>{product.description}</Text>

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { ThemeColor, Size } from '../../style/theme'
 import { Text } from '../Text'
 import { StyledTag } from './styled'
@@ -10,7 +11,7 @@ type Props = {
   size?: Size
 }
 
-export const Tag = ({
+const TagCmp = ({
   title,
   className,
   size = 'md',
@@ -25,3 +26,5 @@ export const Tag = ({
     </StyledTag>
   )
 }
+
+export const Tag = memo(TagCmp)

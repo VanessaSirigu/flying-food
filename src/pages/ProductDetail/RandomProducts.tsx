@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { getRandomProducts } from '../../api'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
@@ -9,7 +9,7 @@ type Props = {
   excludedId?: string
 }
 
-export const RandomProducts = ({ excludedId }: Props) => {
+const RandomProductsCmp = ({ excludedId }: Props) => {
   const getProducts = useCallback(() => getRandomProducts(excludedId), [excludedId])
   const { resource, loading } = useFetch(getProducts)
 
@@ -34,3 +34,5 @@ export const RandomProducts = ({ excludedId }: Props) => {
     </Grid>
   )
 }
+
+export const RandomProducts = memo(RandomProductsCmp)

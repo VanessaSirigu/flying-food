@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import { Size } from '../../style/theme'
 import { IconButton } from '../Button'
@@ -18,7 +19,7 @@ type Props = {
   onClick?: () => void
 }
 
-export const ProductCard = ({
+const ProductCardCmp = ({
   imgSrc,
   name,
   rating,
@@ -53,9 +54,11 @@ export const ProductCard = ({
           icon="shopBag"
           size={buttonSize}
           color="textInverse"
-          onClick={onClick ? () => onClick() : undefined}
+          onClick={onClick}
         />
       </StyledShopButton>
     </StyledCard>
   )
 }
+
+export const ProductCard = memo(ProductCardCmp)

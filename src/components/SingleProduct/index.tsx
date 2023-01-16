@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { TagDto } from '../../api/types'
 import { Image } from '../Image'
 import { SectionTitle } from '../SectionTitle'
@@ -15,7 +16,7 @@ type Props = {
   tags?: TagDto[]
 }
 
-export const SingleProduct = ({ src, alt, name, tags, isNew }: Props) => {
+const SingleProductCmp = ({ src, alt, name, tags, isNew }: Props) => {
   return (
     <StyledProduct>
       {isNew && (
@@ -41,3 +42,5 @@ export const SingleProduct = ({ src, alt, name, tags, isNew }: Props) => {
     </StyledProduct>
   )
 }
+
+export const SingleProduct = memo(SingleProductCmp)

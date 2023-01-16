@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { ThemeColor } from '../../style/theme'
 import { Icon, IconName } from '../Icon'
 import { BaseButton } from './BaseButton'
@@ -10,7 +11,7 @@ type Props = {
   onClick?: () => void
 } & Partial<StyledBaseButtonProps>
 
-export const IconButton = ({
+const IconButtonCmp = ({
   icon,
   size,
   color,
@@ -22,6 +23,7 @@ export const IconButton = ({
   const iconSize = size === 'lg' ? 'xl' : 'sm'
   const backgroundCOlor = inverse ? color : bgColor
   const iconColor = inverse ? bgColor : color
+
   return (
     <BaseButton
       radius="50%"
@@ -37,3 +39,5 @@ export const IconButton = ({
     </BaseButton>
   )
 }
+
+export const IconButton = memo(IconButtonCmp)

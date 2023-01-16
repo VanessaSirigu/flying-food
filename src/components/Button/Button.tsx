@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Size, ThemeColor } from '../../style/theme'
 import { Icon, IconName } from '../Icon'
 import { BaseButton } from './BaseButton'
@@ -18,7 +19,7 @@ type Props = {
   onClick?: () => void
 }
 
-export const Button = ({
+const ButtonCmp = ({
   icon,
   children,
   outlined,
@@ -64,3 +65,5 @@ export const Button = ({
     </BaseButton>
   )
 }
+
+export const Button = memo(ButtonCmp)
