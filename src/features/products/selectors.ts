@@ -11,3 +11,5 @@ export const selectFilteredProducts = (state: RootState) => {
 }
 
 export const selectRelatedProducts = (state: RootState) => state.products.relatedProducts
+
+export const selectProduct = (state: RootState) => state.products.currentProduct

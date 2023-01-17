@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAction, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { Product, ProductsState } from './model'
 
@@ -28,6 +28,9 @@ export const productsSlice = createSlice({
   }
 })
 
-export const productsAction = productsSlice.actions
+export const productsAction = {
+  ...productsSlice.actions,
+  fetchProducts: createAction('products/fetchProducts')
+}
 
 export const productsReducer = productsSlice.reducer

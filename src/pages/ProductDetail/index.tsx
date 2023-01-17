@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../api'
 import { TagDto } from '../../api/types'
@@ -9,27 +10,27 @@ import { Rating } from '../../components/Rating'
 import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
-import { useFetch } from '../../hooks/useFetch'
+import { productsAction } from '../../features/products/reducer'
+import { selectProduct } from '../../features/products/selectors'
 import { RandomProducts } from './RandomProducts'
 import { StyledPaper, StyledVStack } from './styled'
-// import { useSelector } from
 
 type Props = {
   tags?: TagDto[]
 }
 
 export const ProductDetail = ({ tags }: Props) => {
+  const dispatch = useDispatch()
   const { id } = useParams()
   const [quantity, setQuantity] = useState(0)
 
-  // const product = useSelector
+  const product = useSelector(selectProduct)
 
-  const getProduct = useCallback(() => {
+  useEffect(() => {
+    dispatch(productsAction.loadingChanged(true))
+    getProductById(id!).then((p) => dispatch(productsAction.currentProductLoaded(p)))
     setQuantity(0)
-    return getProductById(id!)
-  }, [id])
-
-  const { resource: product, loading } = useFetch(getProduct)
+  }, [dispatch, id])
 
   const productTags = useMemo(
     () =>
@@ -42,48 +43,47 @@ export const ProductDetail = ({ tags }: Props) => {
   const handleQuantity = useCallback((q: number) => {
     setQuantity((currentQ) => currentQ + q)
   }, [])
+  if (!product) return <Loader />
 
   return (
     <StyledPaper>
       <Stack gap={64}>
-        {loading && <Loader />}
-        {product && (
-          <StyledVStack direction="vertical" gap={32}>
-            <SingleProduct
-              src={product.imageUrl}
-              alt={product.name}
-              name={product.name}
-              rating={product.rating}
-              price={`${product.price.type} ${product.price.value}`}
-              isNew={product.new}
-              tags={productTags}
+        <StyledVStack direction="vertical" gap={32}>
+          <SingleProduct
+            src={product.imageUrl}
+            alt={product.name}
+            name={product.name}
+            rating={product.rating}
+            price={`${product.price.type} ${product.price.value}`}
+            isNew={product.new}
+            tags={productTags}
+          />
+          <Rating value={product.rating} />
+          <Text>{product.description}</Text>
+          <Stack centered>
+            <Button
+              iconBgColor="primary"
+              iconColor="backgroundDark"
+              icon="shopBag"
+              bgColor="backgroundDark"
+              color="textInverse"
+            >
+              Add to cart
+            </Button>
+            <QuantitySelector
+              onClick={handleQuantity}
+              quantity={quantity}
+              min={0}
+              max={product.stock}
             />
-            <Rating value={product.rating} />
-            <Text>{product.description}</Text>
-            <Stack centered>
-              <Button
-                iconBgColor="primary"
-                iconColor="backgroundDark"
-                icon="shopBag"
-                bgColor="backgroundDark"
-                color="textInverse"
-              >
-                Add to cart
-              </Button>
-              <QuantitySelector
-                onClick={handleQuantity}
-                quantity={quantity}
-                min={0}
-                max={product.stock}
-              />
-              {quantity >= product.stock && (
-                <Text uppercase color="danger">
-                  max quantity
-                </Text>
-              )}
-            </Stack>
-          </StyledVStack>
-        )}
+            {quantity >= product.stock && (
+              <Text uppercase color="danger">
+                max quantity
+              </Text>
+            )}
+          </Stack>
+        </StyledVStack>
+
         <RandomProducts excludedId={id} />
       </Stack>
     </StyledPaper>
