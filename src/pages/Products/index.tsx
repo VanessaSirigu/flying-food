@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { getProducts } from '../../api'
 import { TagDto } from '../../api/types'
+import { Button } from '../../components/Button'
 import { FilterItem } from '../../components/Filter'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
+import { productsAction } from '../../features/products/reducer'
 import { useFetch } from '../../hooks/useFetch'
 import { first } from '../../Utils'
 import { ProductsHeader } from './ProductsHeader'
@@ -16,6 +19,7 @@ export type Props = {
 export const Products = ({ tags }: Props) => {
   const [selected, setSelected] = useState('')
   const { resource: products } = useFetch(getProducts)
+  const dispatch = useDispatch()
 
   const handleFilterClick = (tag: FilterItem) => {
     setSelected(tag.id)
