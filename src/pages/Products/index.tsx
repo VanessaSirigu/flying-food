@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../api'
 import { TagDto } from '../../api/types'
 import { Button } from '../../components/Button'
@@ -8,6 +8,8 @@ import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
 import { productsAction } from '../../features/products/reducer'
+import { selectProducts } from '../../features/products/selectors'
+import { tagsAction } from '../../features/tags/reducer'
 import { useFetch } from '../../hooks/useFetch'
 import { first } from '../../Utils'
 import { ProductsHeader } from './ProductsHeader'
@@ -18,12 +20,18 @@ export type Props = {
 
 export const Products = ({ tags }: Props) => {
   const [selected, setSelected] = useState('')
-  const { resource: products } = useFetch(getProducts)
+
+  const products = useSelector(selectProducts)
   const dispatch = useDispatch()
 
   const handleFilterClick = (tag: FilterItem) => {
     setSelected(tag.id)
   }
+
+  useEffect(() => {
+    dispatch(productsAction.loadingChanged(true))
+    getProducts().then((p) => dispatch(productsAction.productsLoaded(p)))
+  }, [dispatch])
 
   const filteredTags = tags ? tags.filter((tag) => !tag.hidden) : []
   const selectedTag = selected || first(filteredTags)?.id || ''

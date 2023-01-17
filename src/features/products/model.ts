@@ -1,6 +1,6 @@
 import { ProductDto } from '../../api/types'
 
-type Product = ProductDto
+export type Product = ProductDto
 
 export type ProductsState = {
   products: Product[]
@@ -8,4 +8,5 @@ export type ProductsState = {
   relatedProducts: Product[]
   loading: boolean
   error?: string
+  selectedTag?: string
 }
