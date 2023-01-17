@@ -13,8 +13,6 @@ import { globalStyle } from './style/global'
 import { theme } from './style/theme'
 
 function App() {
-  const { resource: tags } = useFetch(getTags)
-
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -23,8 +21,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Navigate to="products" />} />
-              <Route path="products" element={<Products tags={tags} />} />
-              <Route path="products/:id" element={<ProductDetail tags={tags} />} />
+              <Route path="products" element={<Products />} />
+              <Route path="products/:id" element={<ProductDetail />} />
               <Route path="cart" element={<Cart />} />
               <Route path="*" element={<NotFound />} />
             </Route>

@@ -12,6 +12,7 @@ import { Text } from '../../components/Text'
 import { useFetch } from '../../hooks/useFetch'
 import { RandomProducts } from './RandomProducts'
 import { StyledPaper, StyledVStack } from './styled'
+// import { useSelector } from
 
 type Props = {
   tags?: TagDto[]
@@ -20,6 +21,8 @@ type Props = {
 export const ProductDetail = ({ tags }: Props) => {
   const { id } = useParams()
   const [quantity, setQuantity] = useState(0)
+
+  // const product = useSelector
 
   const getProduct = useCallback(() => {
     setQuantity(0)

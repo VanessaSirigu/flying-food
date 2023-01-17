@@ -8,5 +8,4 @@ export type ProductsState = {
   relatedProducts: Product[]
   loading: boolean
   error?: string
-  selectedTag?: string
 }

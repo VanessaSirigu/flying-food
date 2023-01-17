@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { getProducts } from '../../api'
 import { Product, ProductsState } from './model'
 
 const initialState: ProductsState = {

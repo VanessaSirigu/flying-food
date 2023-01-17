@@ -1,23 +1,32 @@
-import { memo, useCallback } from 'react'
+import { memo, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { getRandomProducts } from '../../api'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
-import { useFetch } from '../../hooks/useFetch'
+import { productsAction } from '../../features/products/reducer'
+import { selectRelatedProducts } from '../../features/products/selectors'
 
 type Props = {
   excludedId?: string
 }
 
 const RandomProductsCmp = ({ excludedId }: Props) => {
-  const getProducts = useCallback(() => getRandomProducts(excludedId), [excludedId])
-  const { resource, loading } = useFetch(getProducts)
+  const relatedProducts = useSelector(selectRelatedProducts)
+  const dispatch = useDispatch()
 
-  if (loading) return <Loader />
+  useEffect(() => {
+    dispatch(productsAction.loadingChanged(true))
+    getRandomProducts(excludedId).then((r) =>
+      dispatch(productsAction.relatedProductsLoaded(r))
+    )
+  }, [dispatch, excludedId])
+
+  if (!relatedProducts) return <Loader />
 
   return (
     <Grid cols={2} gap={32}>
-      {resource?.map((r) => (
+      {relatedProducts?.map((r) => (
         <ProductCard
           linkUrl={`/products/${r.id}`}
           size="sm"

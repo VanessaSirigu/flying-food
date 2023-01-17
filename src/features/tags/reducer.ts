@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { Tag, tagsState } from './model'
+import { first } from '../../Utils'
+import { Tag, TagsState } from './model'
 
-const initialState: tagsState = {
+const initialState: TagsState = {
   tags: [],
   loading: false
 }
@@ -16,6 +17,10 @@ export const tagsSlice = createSlice({
     },
     tagsLoaded(state, action: PayloadAction<Tag[]>) {
       state.tags = action.payload
+      state.selectedTag = first(action.payload.filter((t) => !t.hidden))?.id
+    },
+    tagSelected(state, action: PayloadAction<string>) {
+      state.selectedTag = action.payload
     }
   }
 })
