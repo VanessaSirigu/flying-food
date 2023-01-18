@@ -4,11 +4,12 @@ import { all } from 'redux-saga/effects'
 import { productsReducer, productsSlice } from './products/reducer'
 import { productsSaga } from './products/sagas'
 import { tagsReducer, tagsSlice } from './tags/reducer'
+import { tagsSaga } from './tags/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
 function* rootSaga() {
-  yield all([productsSaga()])
+  yield all([productsSaga(), tagsSaga()])
 }
 
 export const store = configureStore({

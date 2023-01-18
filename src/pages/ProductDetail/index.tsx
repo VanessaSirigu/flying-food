@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductById } from '../../api'
 import { TagDto } from '../../api/types'
 import { Button } from '../../components/Button'
 import { Loader } from '../../components/Loader'
@@ -21,14 +20,13 @@ type Props = {
 
 export const ProductDetail = ({ tags }: Props) => {
   const dispatch = useDispatch()
-  const { id } = useParams()
+  const { id = '' } = useParams()
   const [quantity, setQuantity] = useState(0)
 
   const product = useSelector(selectProduct)
 
   useEffect(() => {
-    dispatch(productsAction.loadingChanged(true))
-    getProductById(id!).then((p) => dispatch(productsAction.currentProductLoaded(p)))
+    dispatch(productsAction.fetchProductById(id))
     setQuantity(0)
   }, [dispatch, id])
 

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAction, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { first } from '../../Utils'
 import { Tag, TagsState } from './model'
@@ -25,6 +25,9 @@ export const tagsSlice = createSlice({
   }
 })
 
-export const tagsAction = tagsSlice.actions
+export const tagsAction = {
+  ...tagsSlice.actions,
+  fetchTags: createAction('tags/fetchTags')
+}
 
 export const tagsReducer = tagsSlice.reducer
