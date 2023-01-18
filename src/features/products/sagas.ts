@@ -20,7 +20,7 @@ function* fetchRelatedProducts(
 ) {
   yield put(productsAction.loadingChanged(true))
   const products: ProductDto[] = yield call(getRandomProducts, action.payload)
-  yield put(productsAction.productsLoaded(products))
+  yield put(productsAction.relatedProductsLoaded(products))
 }
 
 export function* productsSaga() {

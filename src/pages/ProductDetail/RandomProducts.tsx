@@ -1,6 +1,5 @@
 import { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRandomProducts } from '../../api'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
 import { ProductCard } from '../../components/ProductCard'
@@ -8,7 +7,7 @@ import { productsAction } from '../../features/products/reducer'
 import { selectRelatedProducts } from '../../features/products/selectors'
 
 type Props = {
-  excludedId?: string
+  excludedId: string
 }
 
 const RandomProductsCmp = ({ excludedId }: Props) => {
@@ -16,10 +15,7 @@ const RandomProductsCmp = ({ excludedId }: Props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(productsAction.loadingChanged(true))
-    getRandomProducts(excludedId).then((r) =>
-      dispatch(productsAction.relatedProductsLoaded(r))
-    )
+    dispatch(productsAction.fetchRelatedProducts(excludedId))
   }, [dispatch, excludedId])
 
   if (!relatedProducts) return <Loader />
