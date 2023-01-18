@@ -1,4 +1,3 @@
-import { useCallback } from 'react'
 import { IconButton } from '../Button'
 import { Stack } from '../Stack'
 import { Text } from '../Text'
@@ -14,13 +13,13 @@ export const QuantitySelector = ({ quantity, onClick, min, max }: Props) => {
   const canIncrement = typeof max !== 'number' || quantity + 1 <= max
   const canDecrement = typeof min !== 'number' || quantity - 1 >= min
 
-  const onIncrement = useCallback(() => {
-    if (canIncrement) onClick(+1)
-  }, [canIncrement, onClick])
+  const onIncrement = () => {
+    if (canIncrement) onClick(1)
+  }
 
-  const onDecrement = useCallback(() => {
+  const onDecrement = () => {
     if (canDecrement) onClick(-1)
-  }, [canDecrement, onClick])
+  }
 
   return (
     <Stack centered>

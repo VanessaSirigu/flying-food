@@ -1,6 +1,7 @@
 import createSagaMiddleware from '@redux-saga/core'
 import { configureStore } from '@reduxjs/toolkit'
 import { all } from 'redux-saga/effects'
+import { cartReducer, cartSlice } from './cart/reducer'
 import { productsReducer, productsSlice } from './products/reducer'
 import { productsSaga } from './products/sagas'
 import { tagsReducer, tagsSlice } from './tags/reducer'
@@ -15,7 +16,8 @@ function* rootSaga() {
 export const store = configureStore({
   reducer: {
     [productsSlice.name]: productsReducer,
-    [tagsSlice.name]: tagsReducer
+    [tagsSlice.name]: tagsReducer,
+    [cartSlice.name]: cartReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware)

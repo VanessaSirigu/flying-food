@@ -9,6 +9,7 @@ import { Rating } from '../../components/Rating'
 import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
+import { cartAction } from '../../features/cart/reducer'
 import { productsAction } from '../../features/products/reducer'
 import { selectProduct } from '../../features/products/selectors'
 import { RandomProducts } from './RandomProducts'
@@ -27,8 +28,14 @@ export const ProductDetail = ({ tags }: Props) => {
 
   useEffect(() => {
     dispatch(productsAction.fetchProductById(id))
-    setQuantity(0)
+    //     return () => {
+    //   doSomething();
+    // };
   }, [dispatch, id])
+
+  const handleClick = (q: number) => {
+    dispatch(cartAction.addOrUpdateCart({ prod: product!, quantity: q }))
+  }
 
   const productTags = useMemo(
     () =>
@@ -65,6 +72,7 @@ export const ProductDetail = ({ tags }: Props) => {
               icon="shopBag"
               bgColor="backgroundDark"
               color="textInverse"
+              onClick={() => handleClick(quantity)}
             >
               Add to cart
             </Button>

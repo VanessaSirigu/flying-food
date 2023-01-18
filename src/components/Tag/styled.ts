@@ -10,5 +10,5 @@ export const StyledTag = styled.div<{
   border-radius: ${({ theme }) => theme.radii.at(2)}px;
   padding-inline: ${({ theme, size }) => theme.spacings[size]}px;
   padding-block: ${({ theme, size }) => theme.spacings[size] / 2}px;
-  /* width: fit-content; */
+  width: fit-content;
 `
