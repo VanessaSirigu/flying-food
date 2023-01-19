@@ -1,8 +1,8 @@
 import { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { ConnectedProductCard } from '../../components/ConnectedProductCard'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
-import { ProductCard } from '../../components/ProductCard'
 import { productsAction } from '../../features/products/reducer'
 import { selectRelatedProducts } from '../../features/products/selectors'
 
@@ -16,6 +16,9 @@ const RandomProductsCmp = ({ excludedId }: Props) => {
 
   useEffect(() => {
     dispatch(productsAction.fetchRelatedProducts(excludedId))
+    return () => {
+      dispatch(productsAction.resetRelatedProduct())
+    }
   }, [dispatch, excludedId])
 
   if (!relatedProducts) return <Loader />
@@ -23,18 +26,7 @@ const RandomProductsCmp = ({ excludedId }: Props) => {
   return (
     <Grid cols={2} gap={32}>
       {relatedProducts?.map((r) => (
-        <ProductCard
-          linkUrl={`/products/${r.id}`}
-          size="sm"
-          key={r.id}
-          id={r.id}
-          imgSrc={r.imageUrl}
-          name={r.name}
-          rating={r.rating}
-          price={`${r.price.type} ${r.price.value}`}
-          isAvailable={r.available}
-          isNew={r.new}
-        />
+        <ConnectedProductCard product={r} key={r.id} />
       ))}
     </Grid>
   )

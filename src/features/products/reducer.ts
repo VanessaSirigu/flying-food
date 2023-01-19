@@ -18,12 +18,21 @@ export const productsSlice = createSlice({
     },
     productsLoaded(state, action: PayloadAction<Product[]>) {
       state.products = action.payload
+      state.loading = false
     },
     relatedProductsLoaded(state, action: PayloadAction<Product[]>) {
       state.relatedProducts = action.payload
+      state.loading = false
     },
     currentProductLoaded(state, action: PayloadAction<Product>) {
       state.currentProduct = action.payload
+      state.loading = false
+    },
+    resetCurrentProduct(state) {
+      state.currentProduct = initialState.currentProduct
+    },
+    resetRelatedProduct(state) {
+      state.relatedProducts = initialState.relatedProducts
     }
   }
 })

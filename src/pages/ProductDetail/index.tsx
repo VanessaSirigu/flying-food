@@ -28,9 +28,9 @@ export const ProductDetail = ({ tags }: Props) => {
 
   useEffect(() => {
     dispatch(productsAction.fetchProductById(id))
-    //     return () => {
-    //   doSomething();
-    // };
+    return () => {
+      dispatch(productsAction.resetCurrentProduct())
+    }
   }, [dispatch, id])
 
   const handleClick = (q: number) => {
