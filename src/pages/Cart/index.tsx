@@ -13,7 +13,7 @@ export const Cart = () => {
       <SectionTitle main="shopping" secondary="cart" />
       <Stack direction="vertical">
         {cartProducts.map((p) => (
-          <CartItem item={p.prod} quantity={p.quantity} onClick={() => {}} />
+          <CartItem key={p.prod.id} item={p.prod} quantity={p.quantity} />
         ))}
       </Stack>
     </StyledContainer>

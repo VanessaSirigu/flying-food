@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { IconButton } from '../../components/Button'
 import { Image } from '../../components/Image'
@@ -19,14 +20,17 @@ import {
 export type Props = {
   item: Product
   quantity: number
-  onClick: () => void
 }
 
-export const CartItem = ({ item, quantity, onClick }: Props) => {
+const CartItemCmp = ({ item, quantity }: Props) => {
   const dispatch = useDispatch()
+
+  const totalPrice = (item.price.value * quantity).toFixed(2)
 
   const handleClick = (q: number) =>
     dispatch(cartAction.addOrUpdateCart({ prod: item, quantity: q }))
+
+  const handleRemove = () => dispatch(cartAction.removeFromCart(item.id))
 
   return (
     <CartItemContainer centered between gap={64}>
@@ -58,11 +62,19 @@ export const CartItem = ({ item, quantity, onClick }: Props) => {
       </CentralSection>
       <RightSection>
         <Text bold size="lg">
-          {`${item.price.type} ${item.price.value}`}
+          {`${item.price.type} ${totalPrice}`}
         </Text>
       </RightSection>
 
-      <IconButton icon="x" size="lg" bgColor="background" color="danger" />
+      <IconButton
+        icon="x"
+        size="lg"
+        bgColor="background"
+        color="danger"
+        onClick={handleRemove}
+      />
     </CartItemContainer>
   )
 }
+
+export const CartItem = memo(CartItemCmp)
