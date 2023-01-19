@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { cartAction } from '../../features/cart/reducer'
 import { Product } from '../../features/products/model'
@@ -7,7 +8,7 @@ type Props = {
   product: Product
 }
 
-export const ConnectedProductCard = ({ product }: Props) => {
+export const ConnectProductCardCmp = ({ product }: Props) => {
   const dispatch = useDispatch()
   return (
     <ProductCard
@@ -23,3 +24,5 @@ export const ConnectedProductCard = ({ product }: Props) => {
     />
   )
 }
+
+export const ConnectedProductCard = memo(ConnectProductCardCmp)
