@@ -25,3 +25,8 @@ export type TagDto = {
   namePlural: string
   hidden?: boolean
 }
+
+export type DeliveryDto = {
+  id: string
+  name: string
+}
