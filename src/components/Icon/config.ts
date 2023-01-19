@@ -28,7 +28,8 @@ import {
   faUserAlt,
   faMinus,
   faPlus,
-  faTimes
+  faTimes,
+  faCartShopping
 } from '@fortawesome/free-solid-svg-icons'
 
 export const iconMap = {
@@ -62,5 +63,6 @@ export const iconMap = {
   heart: faHeart,
   minus: faMinus,
   plus: faPlus,
-  x: faTimes
+  x: faTimes,
+  cart: faCartShopping
 }

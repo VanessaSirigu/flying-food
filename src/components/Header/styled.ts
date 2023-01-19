@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { center } from '../../style/utils'
 import { Logo } from '../Logo'
 import { Searchbar } from '../Searchbar'
 import { Text } from '../Text'
@@ -30,6 +31,9 @@ export const StyledSignIn = styled.div`
 export const StyledRightSide = styled.div`
   display: flex;
   gap: 10px;
+  :nth-child(2) {
+    position: relative;
+  }
 `
 
 export const StyledUpperHeader = styled.div`
@@ -82,3 +86,16 @@ export const StyledLowHeaderContent = styled(StyledContainer)`
 export const StyledSearch = styled(Searchbar)`
   /* margin-left: 120px; */
 `
+export const StyledNtf = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.colors.danger};
+  color: ${({ theme }) => theme.colors.background};
+  ${center}
+  padding: 8px;
+  position: absolute;
+  top: -5px;
+  left: 30px;
+`
+// export const StyledIconButton

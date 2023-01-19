@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { selectCartProducts } from '../../features/cart/selectors'
 import { Avatar } from '../Avatar'
 import { Button, IconButton } from '../Button'
 import {
@@ -7,7 +10,8 @@ import {
   StyledLowHeaderContent,
   StyledLogo,
   StyledLowHeader,
-  StyledSearch
+  StyledSearch,
+  StyledNtf
 } from './styled'
 import { UpperHeader } from './UpperHeader'
 
@@ -18,6 +22,10 @@ type Props = {
 }
 
 export const Header = ({ className }: Props) => {
+  const productsOnCart = useSelector(selectCartProducts)
+
+  const quantityOnCart = productsOnCart.reduce((acc, curr) => acc + curr.quantity, 0)
+
   return (
     <StyledHeader className={className}>
       <UpperHeader opening="8:00" closing="20:00" options={languages} />
@@ -26,12 +34,15 @@ export const Header = ({ className }: Props) => {
         <StyledLowHeaderContent justify="space-between">
           <StyledSearch outlined />
           <StyledRightSide>
-            <IconButton
-              size="lg"
-              icon="heart"
-              bgColor="backgroundDark"
-              color="textInverse"
-            />
+            <Link to="/cart">
+              {quantityOnCart > 0 && <StyledNtf>{quantityOnCart}</StyledNtf>}
+              <IconButton
+                size="lg"
+                icon="cart"
+                bgColor="backgroundDark"
+                color="textInverse"
+              />
+            </Link>
             <Button size="lg">Web Site</Button>
             <StyledSignIn>
               <Avatar imgSrc="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" />
