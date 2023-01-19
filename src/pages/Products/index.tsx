@@ -12,7 +12,7 @@ export const Products = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(productsAction.fetchProducts())
+    if (filteredProducts.length === 0) dispatch(productsAction.fetchProducts())
   }, [dispatch])
 
   if (!filteredProducts.length) return <Loader />

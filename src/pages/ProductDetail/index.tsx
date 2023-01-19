@@ -10,6 +10,7 @@ import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
 import { cartAction } from '../../features/cart/reducer'
+import { selectCartProducts } from '../../features/cart/selectors'
 import { productsAction } from '../../features/products/reducer'
 import { selectProduct } from '../../features/products/selectors'
 import { RandomProducts } from './RandomProducts'
@@ -25,9 +26,11 @@ export const ProductDetail = ({ tags }: Props) => {
   const [quantity, setQuantity] = useState(0)
 
   const product = useSelector(selectProduct)
+  const cartProducts = useSelector(selectCartProducts)
 
   useEffect(() => {
     dispatch(productsAction.fetchProductById(id))
+    setQuantity(0)
     return () => {
       dispatch(productsAction.resetCurrentProduct())
     }
@@ -35,7 +38,11 @@ export const ProductDetail = ({ tags }: Props) => {
 
   const handleClick = (q: number) => {
     dispatch(cartAction.addOrUpdateCart({ prod: product!, quantity: q }))
+    setQuantity(0)
   }
+
+  const productOnCart = cartProducts.find((p) => p.prod.id === product?.id)
+  const quantityOnCart = productOnCart ? productOnCart.quantity : 0
 
   const productTags = useMemo(
     () =>
@@ -80,16 +87,15 @@ export const ProductDetail = ({ tags }: Props) => {
               onClick={handleQuantity}
               quantity={quantity}
               min={0}
-              max={product.stock}
+              max={product.stock - quantityOnCart}
             />
-            {quantity >= product.stock && (
+            {quantity + quantityOnCart >= product.stock && (
               <Text uppercase color="danger">
                 max quantity
               </Text>
             )}
           </Stack>
         </StyledVStack>
-
         <RandomProducts excludedId={id} />
       </Stack>
     </StyledPaper>
