@@ -14,7 +14,8 @@ export const cartSlice = createSlice({
     addOrUpdateCart(state, { payload }: PayloadAction<CartProduct>) {
       const item = state.products.find(({ prod }) => prod.id === payload.prod.id)
       if (item) {
-        item.quantity += payload.quantity
+        const diff = item.prod.stock - item.quantity
+        item.quantity += payload.quantity <= diff ? payload.quantity : diff
       } else {
         state.products.push(payload)
       }
