@@ -5,7 +5,7 @@ import { Stack } from '../../components/Stack'
 import { selectCartProducts } from '../../features/cart/selectors'
 import { deliveriesAction } from '../../features/deliveries/reducer'
 import { CartItem } from './CartItem'
-import { CheckoutButton } from './CheckoutButton'
+import { CheckoutForm } from './CheckoutForm'
 import { StyledContainer } from './styled'
 
 export const Cart = () => {
@@ -16,11 +16,6 @@ export const Cart = () => {
     dispatch(deliveriesAction.fetchDeliveries())
   }, [dispatch])
 
-  const baseProduct = cartProducts.map(({ prod, quantity }) => ({
-    id: prod.id,
-    quantity
-  }))
-
   return (
     <StyledContainer rounded>
       <SectionTitle main="shopping" secondary="cart" />
@@ -29,7 +24,7 @@ export const Cart = () => {
           <CartItem key={p.prod.id} item={p.prod} quantity={p.quantity} />
         ))}
       </Stack>
-      <CheckoutButton order={{ userId: 'aaa', items: baseProduct }} />
+      <CheckoutForm />
     </StyledContainer>
   )
 }

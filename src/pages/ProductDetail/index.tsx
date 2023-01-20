@@ -9,7 +9,7 @@ import { Rating } from '../../components/Rating'
 import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
-import { cartAction } from '../../features/cart/reducer'
+import { cartActions } from '../../features/cart/reducer'
 import { selectCartProducts } from '../../features/cart/selectors'
 import { productsAction } from '../../features/products/reducer'
 import { selectProduct } from '../../features/products/selectors'
@@ -37,7 +37,7 @@ export const ProductDetail = ({ tags }: Props) => {
   }, [dispatch, id])
 
   const handleClick = (q: number) => {
-    dispatch(cartAction.addOrUpdateCart({ prod: product!, quantity: q }))
+    dispatch(cartActions.addOrUpdateCart({ prod: product!, quantity: q }))
     setQuantity(0)
   }
 

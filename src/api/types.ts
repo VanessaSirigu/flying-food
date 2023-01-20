@@ -30,3 +30,10 @@ export type DeliveryDto = {
   id: string
   name: string
 }
+
+export type OrderDto = {
+  userId: string
+  items: { id: string; quantity: number }[]
+}
+
+export type CreateOrderRes = { message: string; orderId: string }

@@ -9,3 +9,10 @@ export const selectNumberOfProducts = createSelector(
   selectCartProducts,
   (products) => products.length
 )
+
+export const selectOrderItems = createSelector(selectCartProducts, (cartProducts) => {
+  return cartProducts.map(({ prod, quantity }) => ({
+    id: prod.id,
+    quantity
+  }))
+})

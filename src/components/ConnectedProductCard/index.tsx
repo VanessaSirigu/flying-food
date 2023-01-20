@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { useDispatch } from 'react-redux'
-import { cartAction } from '../../features/cart/reducer'
+import { cartActions } from '../../features/cart/reducer'
 import { Product } from '../../features/products/model'
 import { ProductCard } from '../ProductCard'
 
@@ -20,7 +20,9 @@ export const ConnectProductCardCmp = ({ product }: Props) => {
       price={`${product.price.type} ${product.price.value}`}
       isNew={product.new}
       isAvailable={product.available}
-      onClick={() => dispatch(cartAction.addOrUpdateCart({ prod: product, quantity: 1 }))}
+      onClick={() =>
+        dispatch(cartActions.addOrUpdateCart({ prod: product, quantity: 1 }))
+      }
     />
   )
 }

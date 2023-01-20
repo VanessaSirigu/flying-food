@@ -6,7 +6,7 @@ import { QuantitySelector } from '../../components/QuantitySelector'
 import { Stack } from '../../components/Stack'
 import { Tag } from '../../components/Tag'
 import { Text } from '../../components/Text'
-import { cartAction } from '../../features/cart/reducer'
+import { cartActions } from '../../features/cart/reducer'
 import { makeSelectDeliveryById } from '../../features/deliveries/selector'
 import { Product } from '../../features/products/model'
 
@@ -30,9 +30,9 @@ const CartItemCmp = ({ item, quantity }: Props) => {
   const totalPrice = (item.price.value * quantity).toFixed(2)
 
   const handleClick = (q: number) =>
-    dispatch(cartAction.addOrUpdateCart({ prod: item, quantity: q }))
+    dispatch(cartActions.addOrUpdateCart({ prod: item, quantity: q }))
 
-  const handleRemove = () => dispatch(cartAction.removeFromCart(item.id))
+  const handleRemove = () => dispatch(cartActions.removeFromCart(item.id))
 
   return (
     <CartItemContainer centered between gap={64}>
@@ -42,9 +42,7 @@ const CartItemCmp = ({ item, quantity }: Props) => {
         </CartItemThumb>
         <Stack direction="vertical" gap={12}>
           <Tag title={delivery} size="sm" />
-          <Text bold size="lg">
-            {item.name}
-          </Text>
+          <Text bold>{item.name}</Text>
           <Tag
             title={`${item.size.value}${item.size.type}`}
             size="sm"
@@ -62,9 +60,7 @@ const CartItemCmp = ({ item, quantity }: Props) => {
         />
       </CentralSection>
       <RightSection>
-        <Text bold size="lg">
-          {`${item.price.type} ${totalPrice}`}
-        </Text>
+        <Text bold>{`${item.price.type} ${totalPrice}`}</Text>
       </RightSection>
 
       <IconButton

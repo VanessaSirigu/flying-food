@@ -1,5 +1,5 @@
 import { apiClient } from './client'
-import { DeliveryDto, ProductDto, TagDto } from './types'
+import { CreateOrderRes, DeliveryDto, OrderDto, ProductDto, TagDto } from './types'
 
 export const getProducts = () => apiClient.get<ProductDto[]>('products')
 
@@ -14,6 +14,6 @@ export const getRandomProducts = (id?: string) => {
   return apiClient.get<ProductDto[]>(`products/random?${query}`)
 }
 
-export const postOrder = (order: Body) => {
-  return apiClient.post<{ message: string; orderId: string }, Body>('order', order)
+export const createOrder = (order: OrderDto) => {
+  return apiClient.post<CreateOrderRes, OrderDto>('order', order)
 }

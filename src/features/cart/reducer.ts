@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAction, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { CartState, CartProduct } from './model'
 
@@ -22,10 +22,16 @@ export const cartSlice = createSlice({
     },
     removeFromCart(state, { payload }: PayloadAction<string>) {
       state.products = state.products.filter((p) => p.prod.id !== payload)
+    },
+    loadingChanged(state, { payload }: PayloadAction<boolean>) {
+      state.loading = payload
     }
   }
 })
 
-export const cartAction = cartSlice.actions
+export const cartActions = {
+  ...cartSlice.actions,
+  createOrder: createAction('cart/createOrder')
+}
 
 export const cartReducer = cartSlice.reducer

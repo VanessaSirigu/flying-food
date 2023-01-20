@@ -2,19 +2,21 @@ import createSagaMiddleware from '@redux-saga/core'
 import { configureStore } from '@reduxjs/toolkit'
 import { all } from 'redux-saga/effects'
 import { cartReducer, cartSlice } from './cart/reducer'
+import { cartSaga } from './cart/sagas'
 import { deliveriesReducer, deliveriesSlice } from './deliveries/reducer'
 import { deliveriesSaga } from './deliveries/sagas'
-import { ordersReducer, ordersSlice } from './order/reducer'
-import { ordersSaga } from './order/saga'
+import { ordersReducer, ordersSlice } from './orders/reducer'
+import { ordersSaga } from './orders/sagas'
 import { productsReducer, productsSlice } from './products/reducer'
 import { productsSaga } from './products/sagas'
 import { tagsReducer, tagsSlice } from './tags/reducer'
 import { tagsSaga } from './tags/sagas'
+import { userReducer, userSlice } from './user/reducer'
 
 const sagaMiddleware = createSagaMiddleware()
 
 function* rootSaga() {
-  yield all([productsSaga(), tagsSaga(), deliveriesSaga(), ordersSaga()])
+  yield all([productsSaga(), tagsSaga(), deliveriesSaga(), cartSaga(), ordersSaga()])
 }
 
 export const store = configureStore({
@@ -23,7 +25,8 @@ export const store = configureStore({
     [tagsSlice.name]: tagsReducer,
     [cartSlice.name]: cartReducer,
     [deliveriesSlice.name]: deliveriesReducer,
-    [ordersSlice.name]: ordersReducer
+    [ordersSlice.name]: ordersReducer,
+    [userSlice.name]: userReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware)
