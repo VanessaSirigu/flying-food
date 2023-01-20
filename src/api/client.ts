@@ -12,13 +12,13 @@ export const createApiClient = ({ baseURL, apiKey }: Config) => {
       })
       return res.json() as Res
     },
-    async post(resource: string) {
+    async post<Res, Body>(resource: string, data: Body) {
       const res = await fetch(`${baseURL}/${resource}`, {
         method: 'POST',
-        body: '',
+        body: JSON.stringify(data),
         headers
       })
-      return res.json()
+      return res.json() as Res
     }
   }
 }
@@ -27,11 +27,3 @@ export const apiClient = createApiClient({
   baseURL: process.env.REACT_APP_API_BASE_URL || '',
   apiKey: process.env.REACT_APP_API_KEY
 })
-
-// export const createApiClient = (config: Config) => {
-//   return {
-//     get(resource: string) {
-//      return fetch(`${config.baseURL}/${resource}`).then((res) => res.json())
-//     }
-//   }
-// }

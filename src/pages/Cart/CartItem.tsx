@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { IconButton } from '../../components/Button'
 import { Image } from '../../components/Image'
 import { QuantitySelector } from '../../components/QuantitySelector'
@@ -7,6 +7,7 @@ import { Stack } from '../../components/Stack'
 import { Tag } from '../../components/Tag'
 import { Text } from '../../components/Text'
 import { cartAction } from '../../features/cart/reducer'
+import { makeSelectDeliveryById } from '../../features/deliveries/selector'
 import { Product } from '../../features/products/model'
 
 import {
@@ -24,6 +25,7 @@ export type Props = {
 
 const CartItemCmp = ({ item, quantity }: Props) => {
   const dispatch = useDispatch()
+  const delivery = useSelector(makeSelectDeliveryById(item.delivery))
 
   const totalPrice = (item.price.value * quantity).toFixed(2)
 
@@ -39,13 +41,12 @@ const CartItemCmp = ({ item, quantity }: Props) => {
           <Image src={item.imageUrl} alt={item.name} />
         </CartItemThumb>
         <Stack direction="vertical" gap={12}>
-          <Tag title={item.delivery} size="sm" />
-
+          <Tag title={delivery} size="sm" />
           <Text bold size="lg">
             {item.name}
           </Text>
           <Tag
-            title={`${item.size.type} ${item.size.value}`}
+            title={`${item.size.value}${item.size.type}`}
             size="sm"
             bgColor="lightGrey"
             textColor="darkGrey"

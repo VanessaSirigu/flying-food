@@ -1,8 +1,12 @@
+import { createSelector } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
-export const selectTags = (state: RootState) => state.tags.tags
+export const selectTagsState = (state: RootState) => state.tags
 
-export const selectSelectedTag = (state: RootState) => state.tags.selectedTag
+export const selectTags = createSelector(selectTagsState, (t) => t.tags)
 
-export const selectVisibleTags = (state: RootState) =>
-  state.tags.tags.filter((t) => !t.hidden)
+export const selectSelectedTag = createSelector(selectTagsState, (t) => t.selectedTag)
+
+export const selectVisibleTags = createSelector(selectTags, (tags) =>
+  tags.filter((t) => !t.hidden)
+)

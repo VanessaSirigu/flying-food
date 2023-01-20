@@ -13,3 +13,7 @@ export const getRandomProducts = (id?: string) => {
   const query = id ? new URLSearchParams({ productId: id }) : ''
   return apiClient.get<ProductDto[]>(`products/random?${query}`)
 }
+
+export const postOrder = (order: Body) => {
+  return apiClient.post<{ message: string; orderId: string }, Body>('order', order)
+}

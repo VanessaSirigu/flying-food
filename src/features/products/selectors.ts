@@ -1,15 +1,31 @@
+import { createSelector } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
+import { selectSelectedTag } from '../tags/selector'
 
-export const selectProducts = (state: RootState) => state.products.products
+export const selectProductsState = (state: RootState) => state.products
 
-export const selectTagsSelected = (state: RootState) => state.tags.selectedTag
+export const selectProducts = createSelector(selectProductsState, (p) => p.products)
 
-export const selectFilteredProducts = (state: RootState) => {
-  const { products, tags } = state
-  if (!tags.selectedTag) return []
-  return products.products.filter((p) => p.tags.includes(tags.selectedTag!))
-}
+export const selectTagsSelected = createSelector(
+  selectSelectedTag,
+  (selectedTag) => selectedTag
+)
 
-export const selectRelatedProducts = (state: RootState) => state.products.relatedProducts
+export const selectFilteredProducts = createSelector(
+  selectSelectedTag,
+  selectProducts,
+  (selectedTag, products) => {
+    if (!selectedTag) return []
+    return products.filter((p) => p.tags.includes(selectedTag))
+  }
+)
 
-export const selectProduct = (state: RootState) => state.products.currentProduct
+export const selectProduct = createSelector(
+  selectProductsState,
+  (products) => products.currentProduct
+)
+
+export const selectRelatedProducts = createSelector(
+  selectProductsState,
+  (p) => p.relatedProducts
+)

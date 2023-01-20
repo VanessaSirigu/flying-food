@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { selectNumberOfProducts } from '../../features/cart/selectors'
 import { IconButton } from '../Button'
 import { StyledNtf, StyledLink } from './styled'

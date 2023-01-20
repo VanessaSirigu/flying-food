@@ -1,5 +1,11 @@
+import { createSelector } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
-export const selectCartProducts = (state: RootState) => state.carts.products
+export const selectCartState = (state: RootState) => state.carts
 
-export const selectNumberOfProducts = (state: RootState) => state.carts.products.length
+export const selectCartProducts = createSelector(selectCartState, (cart) => cart.products)
+
+export const selectNumberOfProducts = createSelector(
+  selectCartProducts,
+  (products) => products.length
+)
