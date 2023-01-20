@@ -30,6 +30,7 @@ export const BaseButton = ({
       className={className}
       squared={squared}
       onClick={disabled ? undefined : onClick}
+      disabled={disabled}
     >
       {children}
     </StyledBaseButton>

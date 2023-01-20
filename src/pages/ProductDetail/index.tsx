@@ -45,7 +45,7 @@ export const ProductDetail = () => {
 
   const remainingStock =
     typeof cartQuantity === 'undefined' ? product.stock : product.stock - cartQuantity
-  console.log(remainingStock)
+
   return (
     <StyledPaper>
       <Stack gap={64}>

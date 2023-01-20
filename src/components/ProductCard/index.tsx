@@ -13,6 +13,7 @@ type Props = {
   isAvailable: boolean
   rating: number
   price: string
+  disabled: boolean
   size?: Size
   linkUrl?: string
   isNew?: boolean
@@ -28,6 +29,7 @@ const ProductCardCmp = ({
   linkUrl,
   isNew,
   isAvailable,
+  disabled,
   size = 'md',
   onClick
 }: Props) => {
@@ -54,6 +56,7 @@ const ProductCardCmp = ({
           icon="shopBag"
           size={buttonSize}
           color="textInverse"
+          disabled={disabled}
           onClick={onClick}
         />
       </StyledShopButton>

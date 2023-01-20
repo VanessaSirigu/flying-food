@@ -23,7 +23,8 @@ export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
   border: ${({ theme, outlined }) =>
     outlined ? `1px solid ${theme.colors['text']}` : 'none'};
   padding: ${({ size }) => (size === 'sm' ? 2 : 4)}px;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${({ disabled }) => disabled && 0.3};
   ${center}
   text-transform: uppercase;
   transition: transform 0.05s ease-in;
@@ -35,11 +36,6 @@ export const StyledBaseButton = styled.button<StyledBaseButtonProps>`
   :hover {
     transform: translateY(-1px);
     /* transform: scale(1.015); */
-  }
-
-  :disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
   }
 `
 export const StyledText = styled(Text)<{ hasIcon: boolean; btnSize: Size }>`
