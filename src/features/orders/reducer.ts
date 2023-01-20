@@ -1,4 +1,4 @@
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Order, OrderState } from './model'
 
 const initialState: OrderState = {
@@ -19,6 +19,6 @@ export const ordersSlice = createSlice({
   }
 })
 
-export const ordersAction = ordersSlice.actions
+export const ordersActions = ordersSlice.actions
 
 export const ordersReducer = ordersSlice.reducer

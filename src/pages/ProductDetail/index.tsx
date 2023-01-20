@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { TagDto } from '../../api/types'
 import { Button } from '../../components/Button'
 import { Loader } from '../../components/Loader'
 import { QuantitySelector } from '../../components/QuantitySelector'
@@ -10,29 +9,26 @@ import { SingleProduct } from '../../components/SingleProduct'
 import { Stack } from '../../components/Stack'
 import { Text } from '../../components/Text'
 import { cartActions } from '../../features/cart/reducer'
-import { selectCartProducts } from '../../features/cart/selectors'
-import { productsAction } from '../../features/products/reducer'
-import { selectProduct } from '../../features/products/selectors'
+import { makeSelectCartQuantity } from '../../features/cart/selectors'
+import { productsActions } from '../../features/products/reducer'
+import { selectProduct, selectProductTags } from '../../features/products/selectors'
 import { RandomProducts } from './RandomProducts'
 import { StyledPaper, StyledVStack } from './styled'
 
-type Props = {
-  tags?: TagDto[]
-}
-
-export const ProductDetail = ({ tags }: Props) => {
+export const ProductDetail = () => {
   const dispatch = useDispatch()
   const { id = '' } = useParams()
   const [quantity, setQuantity] = useState(0)
 
+  const tags = useSelector(selectProductTags)
   const product = useSelector(selectProduct)
-  const cartProducts = useSelector(selectCartProducts)
+  const cartQuantity = useSelector(makeSelectCartQuantity(id))
 
   useEffect(() => {
-    dispatch(productsAction.fetchProductById(id))
+    dispatch(productsActions.fetchProductById(id))
     setQuantity(0)
     return () => {
-      dispatch(productsAction.resetCurrentProduct())
+      dispatch(productsActions.resetCurrentProduct())
     }
   }, [dispatch, id])
 
@@ -41,22 +37,15 @@ export const ProductDetail = ({ tags }: Props) => {
     setQuantity(0)
   }
 
-  const productOnCart = cartProducts.find((p) => p.prod.id === product?.id)
-  const quantityOnCart = productOnCart ? productOnCart.quantity : 0
-
-  const productTags = useMemo(
-    () =>
-      tags && product?.tags
-        ? tags.filter(({ id }) => product.tags.includes(id))
-        : undefined,
-    [product?.tags, tags]
-  )
-
   const handleQuantity = useCallback((q: number) => {
     setQuantity((currentQ) => currentQ + q)
   }, [])
+
   if (!product) return <Loader />
 
+  const remainingStock =
+    typeof cartQuantity === 'undefined' ? product.stock : product.stock - cartQuantity
+  console.log(remainingStock)
   return (
     <StyledPaper>
       <Stack gap={64}>
@@ -68,7 +57,7 @@ export const ProductDetail = ({ tags }: Props) => {
             rating={product.rating}
             price={`${product.price.type} ${product.price.value}`}
             isNew={product.new}
-            tags={productTags}
+            tags={tags}
           />
           <Rating value={product.rating} />
           <Text>{product.description}</Text>
@@ -79,6 +68,7 @@ export const ProductDetail = ({ tags }: Props) => {
               icon="shopBag"
               bgColor="backgroundDark"
               color="textInverse"
+              disabled={remainingStock === 0}
               onClick={() => handleClick(quantity)}
             >
               Add to cart
@@ -87,9 +77,9 @@ export const ProductDetail = ({ tags }: Props) => {
               onClick={handleQuantity}
               quantity={quantity}
               min={0}
-              max={product.stock - quantityOnCart}
+              max={remainingStock}
             />
-            {quantity + quantityOnCart >= product.stock && (
+            {remainingStock - quantity === 0 && (
               <Text uppercase color="danger">
                 max quantity
               </Text>

@@ -18,6 +18,7 @@ const IconButtonCmp = ({
   bgColor,
   inverse,
   outlined,
+  disabled,
   onClick
 }: Props) => {
   const iconSize = size === 'lg' ? 'xl' : 'sm'
@@ -32,6 +33,7 @@ const IconButtonCmp = ({
       bgColor={backgroundCOlor}
       outlined={outlined}
       onClick={onClick}
+      disabled={disabled}
     >
       <IconContainer>
         <Icon name={icon} size={iconSize} color={iconColor} />

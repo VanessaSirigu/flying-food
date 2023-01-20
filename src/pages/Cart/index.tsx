@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SectionTitle } from '../../components/SectionTitle'
 import { Stack } from '../../components/Stack'
 import { selectCartProducts } from '../../features/cart/selectors'
-import { deliveriesAction } from '../../features/deliveries/reducer'
+import { deliveriesActions } from '../../features/deliveries/reducer'
 import { CartItem } from './CartItem'
 import { CheckoutForm } from './CheckoutForm'
 import { StyledContainer } from './styled'
@@ -13,7 +13,7 @@ export const Cart = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(deliveriesAction.fetchDeliveries())
+    dispatch(deliveriesActions.fetchDeliveries())
   }, [dispatch])
 
   return (

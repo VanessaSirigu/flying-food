@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ConnectedProductCard } from '../../components/ConnectedProductCard'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
-import { productsAction } from '../../features/products/reducer'
+import { productsActions } from '../../features/products/reducer'
 import { selectRelatedProducts } from '../../features/products/selectors'
 
 type Props = {
@@ -15,9 +15,9 @@ const RandomProductsCmp = ({ excludedId }: Props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(productsAction.fetchRelatedProducts(excludedId))
+    dispatch(productsActions.fetchRelatedProducts(excludedId))
     return () => {
-      dispatch(productsAction.resetRelatedProduct())
+      dispatch(productsActions.resetRelatedProduct())
     }
   }, [dispatch, excludedId])
 

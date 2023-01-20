@@ -37,7 +37,7 @@ export const productsSlice = createSlice({
   }
 })
 
-export const productsAction = {
+export const productsActions = {
   ...productsSlice.actions,
   fetchProducts: createAction('products/fetchProducts'),
   fetchProductById: createAction<string>('products/fetchProductById'),

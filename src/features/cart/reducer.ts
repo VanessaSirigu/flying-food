@@ -25,6 +25,9 @@ export const cartSlice = createSlice({
     },
     loadingChanged(state, { payload }: PayloadAction<boolean>) {
       state.loading = payload
+    },
+    resetCart(state) {
+      state.products = initialState.products
     }
   }
 })

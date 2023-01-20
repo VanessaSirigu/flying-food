@@ -25,7 +25,7 @@ export const tagsSlice = createSlice({
   }
 })
 
-export const tagsAction = {
+export const tagsActions = {
   ...tagsSlice.actions,
   fetchTags: createAction('tags/fetchTags')
 }

@@ -7,6 +7,7 @@ export type StyledBaseButtonProps = {
   bgColor: ThemeColor
   radius: number | string
   size: Size
+  disabled?: boolean
   bold?: boolean
   outlined?: boolean
   squared?: boolean

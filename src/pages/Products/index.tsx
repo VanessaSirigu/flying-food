@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ConnectedProductCard } from '../../components/ConnectedProductCard'
 import { Grid } from '../../components/Grid'
 import { Loader } from '../../components/Loader'
-import { productsAction } from '../../features/products/reducer'
+import { productsActions } from '../../features/products/reducer'
 import { selectFilteredProducts } from '../../features/products/selectors'
 import { ProductsHeader } from './ProductsHeader'
 
@@ -12,8 +12,8 @@ export const Products = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (filteredProducts.length === 0) dispatch(productsAction.fetchProducts())
-  }, [dispatch])
+    if (filteredProducts.length === 0) dispatch(productsActions.fetchProducts())
+  }, [dispatch, filteredProducts.length])
 
   if (!filteredProducts.length) return <Loader />
 

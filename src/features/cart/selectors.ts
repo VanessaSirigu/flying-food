@@ -16,3 +16,9 @@ export const selectOrderItems = createSelector(selectCartProducts, (cartProducts
     quantity
   }))
 })
+
+export const makeSelectCartQuantity = (id: string) =>
+  createSelector(selectCartProducts, (cartProducts) => {
+    const pr = cartProducts.find(({ prod }) => prod.id === id)
+    return pr?.quantity
+  })

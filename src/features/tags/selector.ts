@@ -7,6 +7,8 @@ export const selectTags = createSelector(selectTagsState, (t) => t.tags)
 
 export const selectSelectedTag = createSelector(selectTagsState, (t) => t.selectedTag)
 
+// export const selectObjTags  = createSelector(selectSelectedTag, (t) => keyBy(tags, hidden))
+
 export const selectVisibleTags = createSelector(selectTags, (tags) =>
   tags.filter((t) => !t.hidden)
 )

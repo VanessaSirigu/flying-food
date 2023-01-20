@@ -6,6 +6,7 @@ import { IconContainer, StyledText } from './styled'
 
 type Props = {
   children: string
+  disabled?: boolean
   icon?: IconName
   color?: ThemeColor
   iconColor?: ThemeColor
@@ -27,6 +28,7 @@ const ButtonCmp = ({
   iconBgColor,
   inverse,
   bold,
+  disabled,
   onClick,
   className,
   bgColor = 'primary',
@@ -46,6 +48,7 @@ const ButtonCmp = ({
       outlined={outlined}
       onClick={onClick}
       className={className}
+      disabled={disabled}
     >
       <StyledText
         variant="span"

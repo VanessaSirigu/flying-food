@@ -19,7 +19,7 @@ export const deliveriesSlice = createSlice({
   }
 })
 
-export const deliveriesAction = {
+export const deliveriesActions = {
   ...deliveriesSlice.actions,
   fetchDeliveries: createAction('deliveries/fetchDeliveries')
 }

@@ -14,6 +14,7 @@ export const BaseButton = ({
   outlined,
   squared,
   bold,
+  disabled,
   onClick,
   bgColor = 'primary',
   radius = 4,
@@ -28,7 +29,7 @@ export const BaseButton = ({
       outlined={outlined}
       className={className}
       squared={squared}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
     >
       {children}
     </StyledBaseButton>

@@ -1,30 +1,30 @@
 import { put, call, takeEvery } from 'redux-saga/effects'
 import { getProductById, getProducts, getRandomProducts } from '../../api'
 import { ProductDto } from '../../api/types'
-import { productsAction } from './reducer'
+import { productsActions } from './reducer'
 
-function* fetchProducts(action: ReturnType<typeof productsAction.fetchProducts>) {
-  yield put(productsAction.loadingChanged(true))
+function* fetchProducts(action: ReturnType<typeof productsActions.fetchProducts>) {
+  yield put(productsActions.loadingChanged(true))
   const products: ProductDto[] = yield call(getProducts)
-  yield put(productsAction.productsLoaded(products))
+  yield put(productsActions.productsLoaded(products))
 }
 
-function* fetchProductById(action: ReturnType<typeof productsAction.fetchProductById>) {
-  yield put(productsAction.loadingChanged(true))
+function* fetchProductById(action: ReturnType<typeof productsActions.fetchProductById>) {
+  yield put(productsActions.loadingChanged(true))
   const product: ProductDto = yield call(getProductById, action.payload)
-  yield put(productsAction.currentProductLoaded(product))
+  yield put(productsActions.currentProductLoaded(product))
 }
 
 function* fetchRelatedProducts(
-  action: ReturnType<typeof productsAction.fetchRelatedProducts>
+  action: ReturnType<typeof productsActions.fetchRelatedProducts>
 ) {
-  yield put(productsAction.loadingChanged(true))
+  yield put(productsActions.loadingChanged(true))
   const products: ProductDto[] = yield call(getRandomProducts, action.payload)
-  yield put(productsAction.relatedProductsLoaded(products))
+  yield put(productsActions.relatedProductsLoaded(products))
 }
 
 export function* productsSaga() {
-  yield takeEvery(productsAction.fetchProducts.toString(), fetchProducts)
-  yield takeEvery(productsAction.fetchProductById.toString(), fetchProductById)
-  yield takeEvery(productsAction.fetchRelatedProducts.toString(), fetchRelatedProducts)
+  yield takeEvery(productsActions.fetchProducts.toString(), fetchProducts)
+  yield takeEvery(productsActions.fetchProductById.toString(), fetchProductById)
+  yield takeEvery(productsActions.fetchRelatedProducts.toString(), fetchRelatedProducts)
 }
